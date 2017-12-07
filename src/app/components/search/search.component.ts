@@ -15,16 +15,16 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.placeholder = 'The stylist, who can';
+    this.placeholder = 'What should stylist can do?';
     this.search_by_name = false;
   }
 
   changeSearchBy() {
     this.search_by_name = !this.search_by_name;
     if (this.search_by_name) {
-      this.placeholder = 'Name of stylist';
+      this.placeholder = 'What is the name of stylist?';
     } else {
-      this.placeholder = 'The stylist, who can';
+      this.placeholder = 'What should stylist can do?';
     }
   }
 

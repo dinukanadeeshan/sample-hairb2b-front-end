@@ -2,7 +2,7 @@
   min-height: 700px;
   max-height: 850px;
   background-size: cover;
-  background: url('../../../assets/img/home.jpg') no-repeat fixed;
+  background: url('../../../assets/img/home.jpg') fixed no-repeat;
 }
 
 .dark-overlay {
