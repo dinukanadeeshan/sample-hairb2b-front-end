@@ -1,7 +1,11 @@
 <form class="">
-  <div class="">
-    <input type="text" class="form-control">
-    <button class="btn btn-outline-info btn-md fa fa-search"></button>
+  <div class="input-group">
+    <div class="btn-group-vertical">
+      <button class="btn btn-success btn-sm fa fa-caret-up" (click)="changeSearchBy()"></button>
+      <button class="btn btn-success btn-sm fa fa-caret-down" (click)="changeSearchBy()"></button>
+    </div>
+    <input type="text" class="form-control" placeholder={{placeholder}}>
+    <button type="submit" class="btn btn-outline-primary btn-md fa fa-search"> Go!</button>
   </div>
 
 </form>

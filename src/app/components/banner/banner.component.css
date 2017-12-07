@@ -15,7 +15,13 @@
 }
 
 .home-inner {
-  padding-top: 150px;
+  padding-top: 250px;
 }
 
+.text-white {
+  color: white;
+}
 
+.text-ghostwhite {
+  color: ghostwhite;
+}
