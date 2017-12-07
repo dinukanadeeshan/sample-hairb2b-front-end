@@ -7,6 +7,9 @@ import {Component, OnInit} from '@angular/core';
 })
 export class SearchCardComponent implements OnInit {
 
+
+  starsCount = 3;
+
   constructor() {
   }
 
