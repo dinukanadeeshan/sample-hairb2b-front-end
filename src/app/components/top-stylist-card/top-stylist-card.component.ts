@@ -1,0 +1,18 @@
+import {Component, Input, OnInit} from '@angular/core';
+
+@Component({
+  selector: 'app-top-stylist-card',
+  templateUrl: './top-stylist-card.component.html',
+  styleUrls: ['./top-stylist-card.component.css']
+})
+export class TopStylistCardComponent implements OnInit {
+
+  @Input() text: string;
+
+  constructor() {
+  }
+
+  ngOnInit() {
+  }
+
+}
