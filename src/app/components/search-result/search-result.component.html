@@ -1,6 +1,25 @@
-<div class="container">
-  <div class="result">
-    <app-search-card *ngFor="let l of list_"></app-search-card>
-  </div>
+<div class="home-inner container-fluid">
+  <div class="row mb-1">
+    <div class="col-2 ml-5 pt-5 pl-5">
 
+      <div class="display-5 text-white ">
+        <button class="btn btn-sm btn-outline-secodary"><i class="fas fa-sliders-h"></i> Filter</button>
+      </div>
+
+    </div>
+
+    <div class="col-7 ml-4">
+      <div class="panel">
+        <div class="alert alert-info">
+          <app-search></app-search>
+        </div>
+      </div>
+      <div class="result">
+        <app-search-card class="m-1" *ngFor="let l of list_"></app-search-card>
+      </div>
+
+
+    </div>
+  </div>
 </div>
+

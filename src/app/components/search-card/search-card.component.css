@@ -1,0 +1,15 @@
+.bg-d-green {
+  background-color: darkgreen;
+}
+
+.bg-d-orange {
+  background-color: darkorange;
+}
+
+.bg-d-gray {
+  background-color: darkgray;
+}
+
+.outline-success {
+  border: solid 1px darkgreen;
+}

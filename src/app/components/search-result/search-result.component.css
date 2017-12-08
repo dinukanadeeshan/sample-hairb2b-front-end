@@ -1,3 +1,7 @@
 .result {
   background-color: rgba(43, 43, 43, 0.25);
 }
+
+.home-inner {
+  padding-top: 100px;
+}
