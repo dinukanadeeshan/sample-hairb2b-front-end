@@ -18,6 +18,7 @@ import {TopStylistsComponent} from './components/top-stylists/top-stylists.compo
 import {TopStylistCardComponent} from './components/top-stylist-card/top-stylist-card.component';
 import {SlickModule} from 'ngx-slick';
 import {MatChipsModule} from '@angular/material/chips';
+import { FilterComponent } from './components/filter/filter.component';
 
 
 const appRoutes: Routes = [
@@ -40,7 +41,8 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     HomeComponent,
     TopStylistsComponent,
-    TopStylistCardComponent
+    TopStylistCardComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,
