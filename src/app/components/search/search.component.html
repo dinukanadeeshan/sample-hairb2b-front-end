@@ -4,9 +4,9 @@
       <button class="btn btn-success btn-sm fa fa-caret-up" (click)="changeSearchBy()"></button>
       <button class="btn btn-success btn-sm fa fa-caret-down" (click)="changeSearchBy()"></button>
     </div>
-    <input type="text" class="form-control" placeholder={{placeholder}}>
+    <input type="text" class="form-control" placeholder={{placeholder}} [(ngModel)]="q"  [ngModelOptions]="{standalone: true}">
 
-    <button type="submit" class="btn btn-primary btn-md fa fa-search ml-2" routerLink="/search"><b> Go!</b></button>
+    <button type="submit" class="btn btn-primary btn-md fa fa-search ml-2" routerLink="/search" (click)="search()"><b> Go!</b></button>
   </div>
 
 </form>

@@ -9,3 +9,7 @@ body{
   border-bottom: solid 1px #008ed6;
   opacity: 0.9;
 }
+
+.home-inner {
+  padding-top: 100px;
+}

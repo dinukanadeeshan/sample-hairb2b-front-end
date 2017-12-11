@@ -9,13 +9,13 @@
     <div class="col-7 ml-4">
       <div class="panel">
         <div class="alert alert-info">
-          <app-search></app-search>
+          <app-search (myEvent)="call($event)"></app-search>
         </div>
       </div>
       <div class="result">
         <div *ngFor="let stylist of styist_list_">
 
-        <app-search-card [stylist]="stylist" class="m-1" ></app-search-card>
+        <app-search-card [stylist]="stylist" class="m-1"></app-search-card>
         </div>
       </div>
 

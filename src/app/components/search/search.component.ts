@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-search',
@@ -10,6 +10,10 @@ export class SearchComponent implements OnInit {
   placeholder: string;
 
   search_by_name: boolean;
+
+  @Output() myEvent = new EventEmitter();
+
+  q: string;
 
   constructor() {
   }
@@ -26,6 +30,10 @@ export class SearchComponent implements OnInit {
     } else {
       this.placeholder = 'What should stylist can do?';
     }
+  }
+
+  search() {
+    this.myEvent.emit({q: this.q, search_by_name: this.search_by_name});
   }
 
 }

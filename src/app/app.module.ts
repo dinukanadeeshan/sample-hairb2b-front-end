@@ -3,6 +3,8 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RatingModule} from 'ng2-rating';
 import {RouterModule, Routes} from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
+
 
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './components/header/header.component';
@@ -20,11 +22,15 @@ import {SlickModule} from 'ngx-slick';
 import {MatChipsModule} from '@angular/material/chips';
 import { FilterComponent } from './components/filter/filter.component';
 import {Stylist} from './common';
+import {StylistService} from './services/stylist.service';
+import { StylistProfileComponent } from './components/stylist-profile/stylist-profile.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 
 const appRoutes: Routes = [
   {path: 'search', component: SearchResultComponent},
   {path: '', component: HomeComponent},
+  {path: 'profile/view/stylist/:id', component: StylistProfileComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 
@@ -43,7 +49,9 @@ const appRoutes: Routes = [
     HomeComponent,
     TopStylistsComponent,
     TopStylistCardComponent,
-    FilterComponent
+    FilterComponent,
+    StylistProfileComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -51,12 +59,13 @@ const appRoutes: Routes = [
     RatingModule,
     RouterModule.forRoot(
       appRoutes,
-      {enableTracing: true}
+      {enableTracing: false}
     ),
     SlickModule.forRoot(),
-    MatChipsModule
+    MatChipsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [StylistService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
