@@ -1,0 +1,38 @@
+<div class="home-inner">
+  <div class="container bg-light">
+    <div class="pt-2">
+      <div class="text-center">
+        <img
+          src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R"
+          name="aboutme" width="140" height="140" border="0" class="img-circle">
+        <h3 class="media-heading">{{stylist.first_name}} {{stylist.last_name}} <br>
+          <small class="badge badge-success">{{stylist.job_role}}</small>
+        </h3>
+        <span><strong>Skills: </strong></span>
+
+        <span class="badge badge-info m-1" *ngFor="let skill of stylist.skills">{{skill}}</span>
+      </div>
+      <hr>
+      <div class="">
+        <app-calendar></app-calendar>
+      </div>
+
+      <hr>
+      <div class="text-center">
+        <div class="btn m-1 pl-2 pt-2 rounded" *ngFor="let time_slot of stylist.charges">
+          <label>
+            <kbd class="bg-d-green font-weight-bold">{{time_slot.name}}</kbd>
+          </label> <label class="ml-3 bg-dark text-weight-bold">{{time_slot.currency}}
+          <b>{{time_slot.price}}</b></label>
+        </div>
+      </div>
+      <hr>
+      <div class="font-family-moli">
+        <p class="text-left"><strong>Description: </strong><br>
+          {{stylist.description}}</p>
+        <br>
+      </div>
+      <hr>
+    </div>
+  </div>
+</div>
