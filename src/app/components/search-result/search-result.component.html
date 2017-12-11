@@ -13,7 +13,10 @@
         </div>
       </div>
       <div class="result">
-        <app-search-card class="m-1" *ngFor="let l of list_"></app-search-card>
+        <div *ngFor="let stylist of styist_list_">
+
+        <app-search-card [stylist]="stylist" class="m-1" ></app-search-card>
+        </div>
       </div>
 
 

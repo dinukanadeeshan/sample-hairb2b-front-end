@@ -6,23 +6,23 @@
     <img src="http://via.placeholder.com/70x70" alt="Generic placeholder" class="align-self-start mr-3">
     <div class="media-body">
 
-      <h4>{{stylist_name}} <span class="badge badge-success">{{job_role}}</span></h4>
+      <h4>{{stylist.first_name}} {{stylist.last_name}} <span class="badge badge-success">{{stylist.job_role}}</span></h4>
 
       <div class="row">
         <div class="col-8">
           <div class="">
             <h6><i class="fa fa-map-marker" aria-hidden="true"></i> Preferred Locations</h6>
             <div>
-              |<label *ngFor="let loc of locations">
+              |<label *ngFor="let loc of stylist.pref_locations">
               <mark class="alert-warning m-1">{{loc}}</mark>
               | </label>
             </div>
 
           </div>
-          <rating [(ngModel)]="starsCount" [readonly]="true"></rating>
+          <rating [(ngModel)]="stylist.rating" [readonly]="true"></rating>
         </div>
         <div class="col-4">
-          <div class="btn m-1 outline-success pl-2 pt-2 rounded" *ngFor="let time_slot of timeSlots">
+          <div class="btn m-1 outline-success pl-2 pt-2 rounded" *ngFor="let time_slot of stylist.charges">
             <label>
               <kbd class="bg-d-green font-weight-bold">{{time_slot.name}}</kbd>
             </label> <label class="ml-3 bg-dark text-weight-bold">{{time_slot.currency}}
@@ -31,12 +31,12 @@
           <!--<label><kbd class="bg-d-orange font-weight-bold">12PM-5PM</kbd></label>-->
         </div>
       </div>
-      <p class="text-muted">{{description}}</p>
+      <p class="text-muted">{{stylist.description}}</p>
 
       <div class="">
         <mat-chip-list>
 
-          <mat-chip *ngFor="let skill of skills" [selected]="true">{{skill}}</mat-chip>
+          <mat-chip *ngFor="let skill of stylist.skills" [selected]="true">{{skill}}</mat-chip>
 
         </mat-chip-list>
         <div class="d-flex justify-content-end mt-2">

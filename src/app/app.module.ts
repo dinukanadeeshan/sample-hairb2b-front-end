@@ -19,6 +19,7 @@ import {TopStylistCardComponent} from './components/top-stylist-card/top-stylist
 import {SlickModule} from 'ngx-slick';
 import {MatChipsModule} from '@angular/material/chips';
 import { FilterComponent } from './components/filter/filter.component';
+import {Stylist} from './common';
 
 
 const appRoutes: Routes = [
