@@ -18,18 +18,19 @@
   <div class="calender container-fluid">
     <div class="row">
       <div class="col-md-4 text-left">
-        <button class="btn btn-lg full-height" (click)="prevMonth()">
+        <button class="btn btn-lg full-height" (click)="prevMonth()" disabled>
           <i class="fa fa-arrow-left" aria-hidden="true"></i>
         </button>
       </div>
-      <div class="col-md-4 text-center ">
+      <div class="col-md-4 mt-2 text-center ">
         <span class="h2">{{ currentDate.format('YYYY')}}</span>
-        <div class="">
-          <label class="h5">{{ currentDate.format('MMMM')}}</label>
-        </div>
+        <span class="h2" *ngIf="currentDate.format('YYYY') !== weeks[4][6].mDate.format('YYYY')"> / {{weeks[4][6].mDate.format('YYYY')}}</span>
+        <!--<div class="">-->
+        <!--<label class="h5">{{ currentDate.format('MMMM')}}</label>-->
+        <!--</div>-->
       </div>
       <div class="col-md-4 text-right">
-        <button class="btn btn-lg full-height" (click)="nextMonth()">
+        <button class="btn btn-lg full-height" (click)="nextMonth()" disabled>
           <i class="fa fa-arrow-right" aria-hidden="true"></i>
         </button>
       </div>
@@ -51,15 +52,18 @@
         </div>
       </div>
 
-      <div class="m-1 container" *ngIf="cellClicked">
+      <div class="m-1 container text-center" *ngIf="cellClicked">
         <hr>
-        <div class="pl-300">
+        <div class="">
           <app-booking-cell [date]="selectedDay" (bookSlot)="bookASlot($event)"></app-booking-cell>
         </div>
       </div>
-
     </div>
   </div>
+</div>
+<hr>
+<div class="">
+  <app-booking-panel [stylist]="stylist" [bookingList]="justBookedList"></app-booking-panel>
 </div>
 
 

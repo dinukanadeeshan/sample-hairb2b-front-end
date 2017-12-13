@@ -28,6 +28,7 @@ import {CalendarComponent} from './components/calendar/calendar.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CalendarCellComponent} from './components/calendar-cell/calendar-cell.component';
 import {BookingCellComponent} from './components/booking-cell/booking-cell.component';
+import {BookingPanelComponent} from './components/booking-panel/booking-panel.component';
 
 
 const appRoutes: Routes = [
@@ -56,7 +57,8 @@ const appRoutes: Routes = [
     StylistProfileComponent,
     CalendarComponent,
     CalendarCellComponent,
-    BookingCellComponent
+    BookingCellComponent,
+    BookingPanelComponent
 
   ],
   imports: [

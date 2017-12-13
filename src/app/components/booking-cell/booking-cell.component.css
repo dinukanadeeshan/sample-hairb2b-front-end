@@ -49,3 +49,7 @@
 .cursor-hand {
   cursor: pointer;
 }
+
+.pl-300 {
+  padding-left: 300px;
+}

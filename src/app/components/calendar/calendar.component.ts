@@ -23,7 +23,7 @@ export class CalendarComponent implements OnInit {
   cellClicked: boolean;
   selectedDay: CalendarDate;
 
-  justBookedList: Booking[];
+  justBookedList: Booking[] = [];
 
   constructor() {
   }
@@ -77,13 +77,13 @@ export class CalendarComponent implements OnInit {
 
     const firstOfMonth = moment(currentMoment).startOf('month').day();
 
-    const firstDayOfGrid = moment(currentMoment).startOf('month').subtract(firstOfMonth, 'days');
+    // const firstDayOfGrid = moment(currentMoment).startOf('month').subtract(firstOfMonth, 'days');
+    // const start = firstDayOfGrid.date();
 
-    const start = firstDayOfGrid.date();
+    const firstDayOfGrid = moment('2017-12-26').startOf('week');
+    const start = moment(currentMoment).startOf('week').date();
 
-    // const start = moment(currentMoment).startOf('week').day();
-
-    return _.range(start, start + 42)
+    return _.range(start, start + 35)
       .map((date: number): CalendarDate => {
         const d = moment(firstDayOfGrid).date(date);
         // console.log(d);
@@ -144,7 +144,7 @@ export class CalendarComponent implements OnInit {
   }
 
   isThisMonth(d): boolean {
-    return this.currentDate.format('MM') === d.format('MM');
+    return (this.currentDate.format('DD') < d.format('DD') && this.currentDate.format('MM') === d.format('MM')) || this.currentDate.format('MM') > d.format('MM');
   }
 
   timeSlots(d) {
@@ -155,7 +155,28 @@ export class CalendarComponent implements OnInit {
   }
 
   bookASlot($event) {
-
+    if ($event.add) {
+      this.justBookedList.push({date: $event.date, timeSlot: $event.timeSlot});
+    } else {
+      this.justBookedList.splice(this.justBookedList.findIndex(value => {
+        if (value.date === $event.date && value.timeSlot.name === $event.timeSlot.name) {
+          return true;
+        }
+      }), 1);
+    }
+    this.justBookedList.sort((a, b) => {
+      if (a.date === b.date) {
+        if (a.timeSlot.name === '8AM - 12PM') {
+          return -1;
+        } else {
+          return 1;
+        }
+      }
+      if (a.date.isAfter(b.date)) {
+        return 1;
+      }
+      return -1;
+    });
   }
 
 

@@ -29,6 +29,8 @@ export class BookingCellComponent implements OnInit {
     this.toggleClick();
     const index = this.date.timeSlots.indexOf(slot);
     this.date.timeSlots[index].justBooked = !this.date.timeSlots[index].justBooked;
+
+    this.bookSlot.emit({date: this.date.mDate, timeSlot: slot, add: this.date.timeSlots[index].justBooked});
   }
 
 }
