@@ -1,0 +1,19 @@
+<div class="booking-panel text-center font-family-classic">
+  <span class="h4">Bookings for {{stylist.first_name}}</span>
+</div>
+<div class="">
+  <ul class="list-group">
+    <li class="list-group-item font-family-classic d-flex justify-content-between align-items-center"
+        *ngFor="let booking of bookingList">
+
+      <div class="ml-3">
+        {{booking.date.format('YYYY, Do of MMMM')}}
+        <span class="badge"
+              [ngClass]="{'badge-success': booking.timeSlot.name === '8AM - 12PM', 'badge-warning': booking.timeSlot.name === '12PM - 5PM'}"> {{booking.timeSlot.name}}</span>
+      </div>
+      <div class="">
+        {{booking.timeSlot.currency}} {{booking.timeSlot.charge}}
+      </div>
+    </li>
+  </ul>
+</div>
