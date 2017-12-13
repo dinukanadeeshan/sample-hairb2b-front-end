@@ -1,0 +1,9 @@
+<div class=""><label class="h5 pl-3 text-color-dark">{{date.mDate.format('Do of MMMM')}}</label></div>
+
+<div *ngFor="let slot of date.timeSlots">
+  <div class="text-center  cursor-hand"
+       [ngClass]="{'cat-slot-pending': slot.justBooked, 'cat-slot': !slot.justBooked, 'disable bg-danger': slot.booked}"
+       (click)="clickACell(slot)">
+    <label class="text-align-middle cursor-hand">{{slot.name}}</label>
+  </div>
+</div>

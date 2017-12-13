@@ -1,0 +1,26 @@
+.disabled {
+  color: gray;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.badge-notify {
+  position: absolute;
+  left: 75px;
+}
+
+.badge-down {
+  top: 30px;
+}
+
+.badge-up {
+  top: 10px;
+}
+
+.cursor-hand {
+  cursor: pointer;
+}
+
+.outline {
+  border: solid .5px darkgrey;
+}

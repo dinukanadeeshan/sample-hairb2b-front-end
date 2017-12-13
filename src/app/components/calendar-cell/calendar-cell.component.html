@@ -1,0 +1,11 @@
+<span class="badge badge-notify badge-up badge-success" *ngIf="day.timeSlots[0].justBooked"><i class="fa fa-check"></i></span>
+<span class="badge badge-notify badge-down badge-success" *ngIf="day.timeSlots[1].justBooked"><i
+  class="fa fa-check"></i></span>
+<span class="badge badge-notify badge-up badge-danger"
+      *ngIf="day.timeSlots[0].booked && !day.timeSlots[1].booked">busy</span>
+<span class="badge badge-notify badge-down badge-danger" *ngIf="!day.timeSlots[0].booked && day.timeSlots[1].booked">busy</span>
+<div
+  [ngClass]="{'btn-secondary outline': !day.timeSlots[0].booked || !day.timeSlots[1].booked,'btn-danger': day.timeSlots[0].booked && day.timeSlots[1].booked,'disabled': !day.thismonth, 'active':selectedDay!==null && selectedDay.mDate === day.mDate}"
+  class="text-center align-middle m-1 btn-lg cursor-hand" (click)="click($event)">
+  {{day.mDate.format('DD')}}
+</div>

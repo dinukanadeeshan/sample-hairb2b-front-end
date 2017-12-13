@@ -1,0 +1,51 @@
+.cat-slot {
+  clear: both;
+  color: #333333;
+  padding: 12px 0;
+  font-size: 15px;
+  margin-bottom: 4px;
+  border: 1px solid #e6e6e6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 40%;
+  height: 45px;
+}
+
+.cat-slot:hover {
+  background-color: #e6e6e6;
+}
+
+.cat-slot-pending {
+  clear: both;
+  padding: 12px 0;
+  font-size: 15px;
+  color: #eeeeee;
+  margin-bottom: 4px;
+  border: 1px solid #e6e6e6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 40%;
+  height: 45px;
+  background-color: darkgreen;
+  opacity: .9;
+}
+
+.cat-slot-pending:hover {
+  background-color: #144e16;
+}
+
+.text-color-dark {
+
+}
+
+.disable {
+  cursor: not-allowed;
+  pointer-events: none;
+  color: #eeeeee;
+}
+
+.cursor-hand {
+  cursor: pointer;
+}
