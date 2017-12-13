@@ -1,28 +1,187 @@
 <div class="alert">
-  Calendar here...
+  <div class="d-flex justify-content-end">
+    <div class="m-1">
+      <div class="foo bg-white"></div>
+      <span>available</span>
+    </div>
+    <div class="m-1">
+      <div class="foo bg-warning"></div>
+      <span>pending</span>
+    </div>
+    <div class="m-1">
+      <div class="foo bg-danger"></div>
+      <span>full day busy</span>
+    </div>
+  </div>
+</div>
+<div class="container card">
+  <div class="calender container-fluid">
+    <div class="row">
+      <div class="col-md-4 text-left">
+        <button class="btn btn-lg full-height" (click)="prevMonth()">
+          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="col-md-4 text-center ">
+        <span class="h2">{{ currentDate.format('YYYY')}}</span>
+        <div class="">
+          <label class="h5">{{ currentDate.format('MMMM')}}</label>
+        </div>
+      </div>
+      <div class="col-md-4 text-right">
+        <button class="btn btn-lg full-height" (click)="nextMonth()">
+          <i class="fa fa-arrow-right" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+    <div id="calendarBody" class="calender-body">
+      <!--calendar headers-->
+      <div class="row mt-1 mb-1">
+        <div class="col" *ngFor="let day of days">
+          <div class="bg-info font-weight-bold text-white text-center align-middle m-1">{{day}}</div>
+        </div>
+      </div>
+
+      <!--dates of calendar-->
+
+      <div class="row mt-1 mb-1" *ngFor="let week of weeks">
+        <div class="col" *ngFor="let day of week">
+          <app-calendar-cell [selectedDay]="selectedDay" [day]="day"
+                             (clickEvent)="showBookingDiv($event)"></app-calendar-cell>
+        </div>
+      </div>
+
+      <div class="m-1 container" *ngIf="cellClicked">
+        <hr>
+        <div class="pl-300">
+          <app-booking-cell [date]="selectedDay" (bookSlot)="bookASlot($event)"></app-booking-cell>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
 
-<div class="responsive-calendar">
-  <div class="controls">
-    <a class="pull-left" data-go="prev">
-      <div class="btn"><i class="icon-chevron-left"></i></div>
-    </a>
-    <h4><span data-head-year></span> <span data-head-month></span></h4>
-    <a class="pull-right" data-go="next">
-      <div class="btn"><i class="icon-chevron-right"></i></div>
-    </a>
-  </div>
-  <hr/>
-  <div class="day-headers">
-    <div class="day header">Mon</div>
-    <div class="day header">Tue</div>
-    <div class="day header">Wed</div>
-    <div class="day header">Thu</div>
-    <div class="day header">Fri</div>
-    <div class="day header">Sat</div>
-    <div class="day header">Sun</div>
-  </div>
-  <div class="days" data-group="days">
-    <!-- the place where days will be generated -->
-  </div>
-</div>
+
+<!--<div class="row mt-1 mb-1">-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">1</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">2</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">3</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-danger cursor-hand">4</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">5</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">6</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">7</div>-->
+<!--</div>-->
+
+<!--</div>-->
+<!--<div class="row mt-1 mb-1">-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">1</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">2</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">3</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">4</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">5</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">6</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">7</div>-->
+<!--</div>-->
+
+<!--</div>-->
+<!--<div class="row mt-1 mb-1">-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">1</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">2</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">3</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">4</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">5</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">6</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+
+<!--<span class="badge badge-notify badge-up badge-danger"><i class="far fa-calendar-check fa-lg"></i></span>-->
+<!--<span class="badge badge-notify badge-down bg-white"><i class="far fa-calendar fa-lg c-dark"></i></span>-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-warning cursor-hand">7</div>-->
+<!--</div>-->
+
+<!--</div>-->
+
+<!--<div class="row mt-1 mb-1">-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">1</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">2</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">3</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">4</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">5</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">6</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand disabled">7</div>-->
+<!--</div>-->
+
+<!--</div>-->
+<!--<div class="row mt-1 mb-1">-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">1</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">2</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-success cursor-hand">3</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">4</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">5</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand">6</div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--<div class="text-center align-middle m-1 btn-lg btn-secondary cursor-hand disabled">7</div>-->
+<!--</div>-->

@@ -1,3 +1,4 @@
+import * as moment from 'moment';
 
 export interface Stylist {
   id: number;
@@ -19,7 +20,7 @@ export interface Stylist {
   terms_and_condition: string;
   skills: Array<string>;
   pref_locations: Array<string>;
-  charges: Array<ChargePerSlot>;
+  charges: Array<TimeSlot>;
   rating: number;
 }
 
@@ -28,4 +29,29 @@ export interface ChargePerSlot {
   name: string;
   price: number;
   currency: string;
+}
+
+export interface CalendarDate {
+  mDate: moment.Moment;
+  selected?: boolean;
+  today?: boolean;
+  busy?: boolean;
+  pending?: boolean;
+  available?: boolean;
+  partiallyBusy?: boolean;
+  thismonth?: boolean;
+  timeSlots: TimeSlot[];
+}
+
+export interface TimeSlot {
+  name: string;
+  charge: number;
+  currency: string;
+  booked?: boolean;
+  justBooked?: boolean;
+}
+
+export interface Booking {
+  date: moment.Moment;
+  timeSlot: TimeSlot;
 }

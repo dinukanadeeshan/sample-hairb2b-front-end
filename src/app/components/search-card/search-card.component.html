@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col-8">
           <div class="">
-            <h6><i class="fa fa-map-marker" aria-hidden="true"></i> Preferred Locations</h6>
+            <h6><i class="ion-location" aria-hidden="true"></i> Preferred Locations</h6>
             <div>
               |<label *ngFor="let loc of stylist.pref_locations">
               <mark class="alert-warning m-1">{{loc}}</mark>
@@ -40,7 +40,9 @@
 
         </mat-chip-list>
         <div class="d-flex justify-content-end mt-2">
-          <button class="btn btn-outline-primary btn-lg">view profile</button>
+          <button class="btn btn-outline-primary btn-lg" routerLink="/profile/view/stylist/{{stylist.id}}">view
+            profile
+          </button>
         </div>
       </div>
 

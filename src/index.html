@@ -19,8 +19,9 @@
   <link href="https://use.fontawesome.com/releases/v5.0.0/css/all.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+  <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
 
-  <link href="assets/css/responsive-calendar.css" rel="stylesheet" media="screen">
+
 </head>
 <body>
 <app-root></app-root>
@@ -38,7 +39,21 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
 <script src="https://unpkg.com/slick-carousel@1.6.0/slick/slick.js"></script>
 
-<script src="assets/js/responsive-calendar.js"></script>
+<script type="text/javascript">
+  $(function () {
+    $('[data-toggle="popover"]').popover({
+      html: true,
+      content: function () {
+        var content = $(this).attr("data-popover-content");
+        return $(content).children(".popover-body").html();
+      },
+      title: function () {
+        var title = $(this).attr("data-popover-content");
+        return $(title).children(".popover-heading").html();
+      }
+    })
+  })
+</script>
 
 </body>
 </html>

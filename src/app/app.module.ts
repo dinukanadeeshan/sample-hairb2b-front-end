@@ -20,11 +20,14 @@ import {TopStylistsComponent} from './components/top-stylists/top-stylists.compo
 import {TopStylistCardComponent} from './components/top-stylist-card/top-stylist-card.component';
 import {SlickModule} from 'ngx-slick';
 import {MatChipsModule} from '@angular/material/chips';
-import { FilterComponent } from './components/filter/filter.component';
-import {Stylist} from './common';
+import {FilterComponent} from './components/filter/filter.component';
 import {StylistService} from './services/stylist.service';
-import { StylistProfileComponent } from './components/stylist-profile/stylist-profile.component';
-import { CalendarComponent } from './components/calendar/calendar.component';
+import {StylistProfileComponent} from './components/stylist-profile/stylist-profile.component';
+import {CalendarComponent} from './components/calendar/calendar.component';
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {CalendarCellComponent} from './components/calendar-cell/calendar-cell.component';
+import {BookingCellComponent} from './components/booking-cell/booking-cell.component';
 
 
 const appRoutes: Routes = [
@@ -51,7 +54,10 @@ const appRoutes: Routes = [
     TopStylistCardComponent,
     FilterComponent,
     StylistProfileComponent,
-    CalendarComponent
+    CalendarComponent,
+    CalendarCellComponent,
+    BookingCellComponent
+
   ],
   imports: [
     BrowserModule,
@@ -63,7 +69,8 @@ const appRoutes: Routes = [
     ),
     SlickModule.forRoot(),
     MatChipsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [StylistService],
   bootstrap: [AppComponent]

@@ -11,12 +11,10 @@
         <span><strong>Skills: </strong></span>
 
         <span class="badge badge-info m-1" *ngFor="let skill of stylist.skills">{{skill}}</span>
+        <div class="">
+          <rating [(ngModel)]="stylist.rating" [readonly]="true"></rating>
+        </div>
       </div>
-      <hr>
-      <div class="">
-        <app-calendar></app-calendar>
-      </div>
-
       <hr>
       <div class="text-center">
         <div class="btn m-1 pl-2 pt-2 rounded" *ngFor="let time_slot of stylist.charges">
@@ -26,6 +24,12 @@
           <b>{{time_slot.price}}</b></label>
         </div>
       </div>
+      <hr>
+      <div class="">
+        <app-calendar></app-calendar>
+      </div>
+      <hr>
+
       <hr>
       <div class="font-family-moli">
         <p class="text-left"><strong>Description: </strong><br>
