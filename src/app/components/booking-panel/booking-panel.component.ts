@@ -11,6 +11,8 @@ export class BookingPanelComponent implements OnInit {
   @Input() stylist: Stylist;
   @Input() bookingList: Booking;
 
+  @Input() total: number;
+
   constructor() {
   }
 

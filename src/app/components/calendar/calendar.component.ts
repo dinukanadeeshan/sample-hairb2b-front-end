@@ -24,11 +24,12 @@ export class CalendarComponent implements OnInit {
   selectedDay: CalendarDate;
 
   justBookedList: Booking[] = [];
-
+  totalOfJustBooked: number;
   constructor() {
   }
 
   ngOnInit() {
+    this.totalOfJustBooked = 0;
     this.today = moment();
 
     this.currentDate = this.today;
@@ -176,6 +177,12 @@ export class CalendarComponent implements OnInit {
         return 1;
       }
       return -1;
+    });
+
+    this.totalOfJustBooked = this.justBookedList.map(value => {
+      return value.timeSlot.charge;
+    }).reduce((sum, current) => {
+      return sum + current;
     });
   }
 
