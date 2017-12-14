@@ -24,6 +24,7 @@
 
 </head>
 <body>
+
 <app-root></app-root>
 
 <!-- Boostrap 4-->
@@ -39,20 +40,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
 <script src="https://unpkg.com/slick-carousel@1.6.0/slick/slick.js"></script>
 
+<script src="http://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+<!--<script src="assets/js/boostrap3-typeahead.js"></script>-->
+
 <script type="text/javascript">
-  $(function () {
-    $('[data-toggle="popover"]').popover({
-      html: true,
-      content: function () {
-        var content = $(this).attr("data-popover-content");
-        return $(content).children(".popover-body").html();
-      },
-      title: function () {
-        var title = $(this).attr("data-popover-content");
-        return $(title).children(".popover-heading").html();
-      }
-    })
-  })
+  // $(function () {
+  //   $('[data-toggle="popover"]').popover({
+  //     html: true,
+  //     content: function () {
+  //       var content = $(this).attr("data-popover-content");
+  //       return $(content).children(".popover-body").html();
+  //     },
+  //     title: function () {
+  //       var title = $(this).attr("data-popover-content");
+  //       return $(title).children(".popover-heading").html();
+  //     }
+  //   })
+  // })
+
 </script>
 
 </body>

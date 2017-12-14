@@ -55,3 +55,8 @@ export interface Booking {
   date: moment.Moment;
   timeSlot: TimeSlot;
 }
+
+export interface Skill {
+  id: number;
+  skill: string;
+}

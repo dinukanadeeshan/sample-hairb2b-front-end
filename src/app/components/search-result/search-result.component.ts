@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Stylist} from '../../common';
 import {StylistService} from '../../services/stylist.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-search-result',
@@ -10,12 +11,20 @@ import {StylistService} from '../../services/stylist.service';
 export class SearchResultComponent implements OnInit {
 
   styist_list_: Array<Stylist>;
+  query: any;
 
-  constructor(private stylistService: StylistService) {
+  constructor(private stylistService: StylistService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(v => this.query = v);
+    console.log(this.query);
 
+    if (this.query.search_by_name) {
+      this.stylistService.getStylistByName(this.query.q).subscribe(data => {
+        this.styist_list_ = data;
+      });
+    }
   }
 
   call($event) {

@@ -44,7 +44,7 @@ export class StylistProfileComponent implements OnInit {
 
     const id = +this.route.snapshot.paramMap.get('id');
 
-    this.stylistService.getSampleStylistProfile().subscribe(data => {
+    this.stylistService.getStylistProfile(id).subscribe(data => {
       this.stylist = data;
     });
   }
