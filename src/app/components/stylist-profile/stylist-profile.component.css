@@ -1,11 +1,17 @@
-.bg-light{
+.bg-light {
   background-color: #eeeeee;
 }
 
-.font-family-moli{
+.font-family-moli {
   font-family: "Abyssinica SIL";
 }
 
 .bg-d-green {
   background-color: darkgreen;
+}
+
+.profile-pic {
+  background-repeat: no-repeat;
+  height: 140px;
+  width: 140px;
 }

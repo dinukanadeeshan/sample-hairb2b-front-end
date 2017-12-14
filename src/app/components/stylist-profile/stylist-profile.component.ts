@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Stylist} from '../../common';
 import {StylistService} from '../../services/stylist.service';
+import {CommonService} from '../../services/common.service';
 
 @Component({
   selector: 'app-stylist-profile',
@@ -12,9 +13,10 @@ export class StylistProfileComponent implements OnInit {
 
 
   stylist: Stylist;
+  img: any;
 
-
-  constructor(private route: ActivatedRoute, private stylistService: StylistService) { }
+  constructor(private route: ActivatedRoute, private stylistService: StylistService, private commonService: CommonService) {
+  }
 
   ngOnInit() {
 
@@ -47,6 +49,10 @@ export class StylistProfileComponent implements OnInit {
     this.stylistService.getStylistProfile(id).subscribe(data => {
       this.stylist = data;
     });
+
+    // this.commonService.getImage().subscribe(data => {
+    //   this.img = data.img;
+    // });
   }
 
 }
