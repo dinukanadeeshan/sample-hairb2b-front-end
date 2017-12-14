@@ -1,7 +1,28 @@
 .booking-panel {
-  background-color: #e6e6e6
+  /*background-color: #e6e6e6*/
 }
 
 .font-family-classic {
   font-family: "Courier 10 Pitch";
+}
+
+.booking-btn {
+  clear: both;
+  padding: 12px 0;
+  font-size: 15px;
+  color: #eeeeee;
+  margin-bottom: 4px;
+  border: 1px solid #e6e6e6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 20%;
+  height: 45px;
+  opacity: .9;
+  background-color: #008ed6;
+}
+
+.booking-btn:hover {
+  background-color: dodgerblue;
+  cursor: pointer;
 }

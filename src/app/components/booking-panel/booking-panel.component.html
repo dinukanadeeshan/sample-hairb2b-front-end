@@ -17,8 +17,17 @@
     </li>
   </ul>
 
-  <div class="list-group-item list-group-item-secondary font-family-classic d-flex justify-content-end h5"
-       *ngIf="bookingList.length > 0">
-    <span class="pr-5">Total: </span> {{bookingList[0].timeSlot.currency}} {{total}}
+  <div class="list-group-item alert-warning font-family-classic font-weight-bold" *ngIf="bookingList.length < 1">
+    <span>No selected booking for {{stylist.first_name}}</span>
+  </div>
+
+
+  <div *ngIf="bookingList.length > 0">
+    <div class="list-group-item alert-success font-family-classic d-flex justify-content-end h5 font-weight-bold">
+      <span class="pr-5">Total: </span> {{bookingList[0].timeSlot.currency}} {{total}}
+    </div>
+    <div class="font-family-classic d-flex justify-content-end mt-1">
+      <button class="booking-btn">Book Now</button>
+    </div>
   </div>
 </div>
