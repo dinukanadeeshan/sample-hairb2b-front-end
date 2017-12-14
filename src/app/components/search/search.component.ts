@@ -65,9 +65,9 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  // search() {
-  //   this.myEvent.emit({q: this.q, search_by_name: this.search_by_name});
-  // }
+  search() {
+    this.myEvent.emit({q: this.q, search_by_name: this.search_by_name});
+  }
 
 }
 

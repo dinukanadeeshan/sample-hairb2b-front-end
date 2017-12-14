@@ -50,6 +50,8 @@ export class StylistProfileComponent implements OnInit {
       this.stylist = data;
     });
 
+
+    console.log('ngoninit - stylist profile component');
     // this.commonService.getImage().subscribe(data => {
     //   this.img = data.img;
     // });

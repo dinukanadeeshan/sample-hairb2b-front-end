@@ -21,8 +21,8 @@ export class StylistService {
     return this.http.get<Stylist>('/api/v1/stylist/getstylist/' + id);
   }
 
-  getStylistByName(name): Observable<Stylist> {
-    return this.http.get<Stylist>('/api/v1/stylist/getstylistbyname/' + name);
+  getStylistByName(name): Observable<Stylist[]> {
+    return this.http.get<Stylist[]>('/api/v1/stylist/getstylistbyname/' + name);
   }
 
   getNames(): Observable<string[]> {

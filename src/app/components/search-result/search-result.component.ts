@@ -28,11 +28,19 @@ export class SearchResultComponent implements OnInit {
   }
 
   call($event) {
-    console.log($event);
-    this.stylistService.getSampleStylists().subscribe(data => {
-      this.styist_list_ = data;
-    });
+    // this.route.queryParams.subscribe(v => this.query = v);
+
+
+    console.log(this.query);
+
+    if ($event.search_by_name) {
+      this.stylistService.getStylistByName($event.q).subscribe(data => {
+        this.styist_list_ = data;
+      });
+    }
   }
+
+
 }
 
 
