@@ -1,12 +1,16 @@
 <div class="card card m-2 p-2" style="width: 20rem;">
-  <img class="card-img-top" src="http://via.placeholder.com/250x200" alt="Card image cap">
-  <div class="card-body">
-    <h4 class="card-title">Card title</h4>
-    <h3>{{text}}</h3>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-      content.</p>
-    <div class="d-flex justify-content-end">
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+  <img class="card-img-top profile-pic" src="data:image/jpg;base64,{{stylist.profile_pic}}" alt="Card image cap">
+  <div class="card-body mt-3">
+    <h4 class="card-title d-flex justify-content-center">{{stylist.first_name}} {{stylist.last_name}}
+      <small class="badge badge-success ml-2">{{stylist.job_role}}</small>
+    </h4>
+    <div class="d-flex justify-content-center">
+      <rating [(ngModel)]="stylist.rating" [readonly]="true"></rating>
+    </div>
+    <div class="d-flex justify-content-end mt-2">
+      <button class="btn btn-outline-primary btn-lg cursor-hand" routerLink="/profile/view/stylist/{{stylist.id}}">view
+        profile
+      </button>
     </div>
   </div>
 </div>

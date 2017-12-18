@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {StylistService} from '../../services/stylist.service';
+import {Stylist} from '../../common';
 
 @Component({
   selector: 'app-top-stylists',
@@ -13,9 +15,11 @@ export class TopStylistsComponent implements OnInit {
     {img: 'http://placehold.it/350x150/333333'},
     {img: 'http://placehold.it/350x150/666666'}
   ];
+
+  stylists: Stylist[] = [];
   slideConfig = {'slidesToShow': 3, 'slidesToScroll': 1};
 
-  constructor() {
+  constructor(private stylistService: StylistService) {
   }
 
   afterChange(e) {
@@ -23,6 +27,9 @@ export class TopStylistsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.stylistService.getTopStylists().subscribe(data => {
+      this.stylists = data;
+    });
   }
 
 }

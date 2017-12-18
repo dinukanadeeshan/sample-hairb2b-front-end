@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {Skill} from '../common';
+import {JobRole, Skill} from '../common';
 
 @Injectable()
 export class CommonService {
@@ -15,6 +15,10 @@ export class CommonService {
 
   getImage(): Observable<Image> {
     return this.http.get<Image>('/api/v1/common/image');
+  }
+
+  getJobRoles(): Observable<JobRole[]> {
+    return this.http.get<JobRole[]>('/api/v1/common/jobroles');
   }
 
 

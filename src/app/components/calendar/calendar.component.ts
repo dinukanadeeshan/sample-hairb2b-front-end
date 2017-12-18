@@ -25,6 +25,7 @@ export class CalendarComponent implements OnInit {
 
   justBookedList: Booking[] = [];
   totalOfJustBooked: number;
+
   constructor() {
   }
 
@@ -178,12 +179,14 @@ export class CalendarComponent implements OnInit {
       }
       return -1;
     });
+    if (this.justBookedList.length > 0) {
 
-    this.totalOfJustBooked = this.justBookedList.map(value => {
-      return value.timeSlot.charge;
-    }).reduce((sum, current) => {
-      return sum + current;
-    });
+      this.totalOfJustBooked = this.justBookedList.map(value => {
+        return value.timeSlot.charge;
+      }).reduce((sum, current) => {
+        return sum + current;
+      });
+    }
   }
 
 

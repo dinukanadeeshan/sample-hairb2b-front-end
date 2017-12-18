@@ -4,7 +4,7 @@ import {FormsModule} from '@angular/forms';
 import {RatingModule} from 'ng2-rating';
 import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
-
+import {MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule, MatSliderModule} from '@angular/material';
 
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './components/header/header.component';
@@ -75,7 +75,12 @@ const appRoutes: Routes = [
     MatChipsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    MatSliderModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatNativeDateModule
   ],
   providers: [StylistService, CommonService],
   bootstrap: [AppComponent]

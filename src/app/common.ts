@@ -60,3 +60,14 @@ export interface Skill {
   id: number;
   skill: string;
 }
+
+export interface JobRole {
+  id: number;
+  role: string;
+}
+
+export interface JobRoleFilter {
+  id: number;
+  role: string;
+  selected?: boolean;
+}

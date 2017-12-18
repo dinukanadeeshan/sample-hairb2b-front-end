@@ -33,5 +33,9 @@ export class StylistService {
     return this.http.get<Stylist[]>('/api/v1/stylist/getstylistsbyskill/' + skill);
   }
 
+  getTopStylists(): Observable<Stylist[]> {
+    return this.http.get<Stylist[]>('/api/v1/stylist/gettopstylists');
+  }
+
 
 }
