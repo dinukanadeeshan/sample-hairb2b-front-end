@@ -11,6 +11,7 @@ import {ActivatedRoute} from '@angular/router';
 export class SearchResultComponent implements OnInit {
 
   styist_list_: Array<Stylist>;
+  search_results: Array<Stylist>;
   query: any;
 
   constructor(private stylistService: StylistService, private route: ActivatedRoute) {
@@ -23,11 +24,13 @@ export class SearchResultComponent implements OnInit {
     if (this.query.search_by_name === 'true') {
       this.stylistService.getStylistByName(this.query.q).subscribe(data => {
         this.styist_list_ = data;
+        this.search_results = this.styist_list_;
       });
     } else {
       console.log('search by skill no');
       this.stylistService.getStylistBySkill(this.query.q).subscribe(data => {
         this.styist_list_ = data;
+        this.search_results = this.styist_list_;
       });
     }
   }
@@ -41,15 +44,44 @@ export class SearchResultComponent implements OnInit {
     if ($event.search_by_name) {
       this.stylistService.getStylistByName($event.q).subscribe(data => {
         this.styist_list_ = data;
+        this.search_results = this.styist_list_;
       });
     } else {
       this.stylistService.getStylistBySkill($event.q).subscribe(data => {
         this.styist_list_ = data;
+        this.search_results = this.styist_list_;
       });
     }
   }
 
+  filterResult($event) {
+    let nonSelected = true;
+    this.styist_list_ = this.search_results.filter(value => {
+      for (let i = 0; i < $event.job_roles.length; i++) {
+        if ($event.job_roles[i].selected && $event.job_roles[i].role === value.job_role) {
+          nonSelected = false;
+          return true;
+        }
+      }
+      return false;
+    });
 
+
+    if (nonSelected) {
+      this.styist_list_ = this.search_results;
+    }
+
+    this.styist_list_ = this.styist_list_.filter(value => {
+      for (let i = 0; i < value.charges.length; i++) {
+        if (value.charges[i].charge < $event.max_charge) {
+          return true;
+        }
+      }
+      return false;
+    });
+
+
+  }
 }
 
 

@@ -43,8 +43,11 @@ export class FilterComponent implements OnInit {
 
 
   applyFilters() {
-    console.log(this.job_role_filters);
-    this.filterEvent.emit();
+    this.filterEvent.emit({
+      job_roles: this.job_role_filters,
+      max_charge: this.valueOfSlider,
+      date_range: {from: this.fromDate, to: this.toDate}
+    });
   }
 
   clearFilters() {

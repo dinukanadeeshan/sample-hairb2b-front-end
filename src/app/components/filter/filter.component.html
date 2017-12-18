@@ -22,7 +22,7 @@
       <div class="input-group mt-2" *ngFor="let role of job_role_filters">
       <span class="input-group-addon">
 
-        <input class="" type="checkbox" (change)="role.selected = !role.selected">
+        <input class="" type="checkbox" (change)="role.selected = !role.selected; applyFilters()">
       </span>
         <label class="form-control">
           {{role.role}}
@@ -38,7 +38,8 @@
       </span>
       <div class="pl-3">
 
-        <mat-slider min="0" [max]="maxSlider" [step]="1" [(ngModel)]="valueOfSlider" [thumbLabel]="true"></mat-slider>
+        <mat-slider min="0" [max]="maxSlider" [step]="1" [(ngModel)]="valueOfSlider" [thumbLabel]="true"
+                    (change)="applyFilters()"></mat-slider>
         <label>
           AUD {{valueOfSlider}}
         </label>
@@ -74,7 +75,7 @@
 
     </div>
     <hr>
-    <button class="btn btn-info" (click)="applyFilters()">Apply</button>
+    <!--<button class="btn btn-info" (click)="applyFilters()">Apply</button>-->
     <button class="btn btn-warning" (click)="clearFilters()">Clear</button>
   </div>
 
