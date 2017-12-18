@@ -20,8 +20,13 @@ export class SearchResultComponent implements OnInit {
     this.route.queryParams.subscribe(v => this.query = v);
     console.log(this.query);
 
-    if (this.query.search_by_name) {
+    if (this.query.search_by_name === 'true') {
       this.stylistService.getStylistByName(this.query.q).subscribe(data => {
+        this.styist_list_ = data;
+      });
+    } else {
+      console.log('search by skill no');
+      this.stylistService.getStylistBySkill(this.query.q).subscribe(data => {
         this.styist_list_ = data;
       });
     }
@@ -35,6 +40,10 @@ export class SearchResultComponent implements OnInit {
 
     if ($event.search_by_name) {
       this.stylistService.getStylistByName($event.q).subscribe(data => {
+        this.styist_list_ = data;
+      });
+    } else {
+      this.stylistService.getStylistBySkill($event.q).subscribe(data => {
         this.styist_list_ = data;
       });
     }

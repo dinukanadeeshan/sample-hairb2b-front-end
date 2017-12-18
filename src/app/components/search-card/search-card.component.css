@@ -13,3 +13,9 @@
 .outline-success {
   border: solid 1px darkgreen;
 }
+
+.profile-pic {
+  background-repeat: no-repeat;
+  height: 100px;
+  width: 100px;
+}

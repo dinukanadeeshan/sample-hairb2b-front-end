@@ -29,5 +29,9 @@ export class StylistService {
     return this.http.get<string[]>('/api/v1/stylist/getnames');
   }
 
+  getStylistBySkill(skill): Observable<Stylist[]> {
+    return this.http.get<Stylist[]>('/api/v1/stylist/getstylistsbyskill/' + skill);
+  }
+
 
 }

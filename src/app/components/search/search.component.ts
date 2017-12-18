@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
@@ -24,11 +24,14 @@ export class SearchComponent implements OnInit {
   placeholder: string;
 
   search_by_name: boolean;
+  search_by = ' By Skill';
 
+  @Input() initial: InitialSearchBar;
   @Output() myEvent = new EventEmitter();
 
   q: string;
 
+  last_q: string;
 
   search_text = (text$: Observable<string>) =>
     text$
@@ -54,14 +57,33 @@ export class SearchComponent implements OnInit {
     this.stylistService.getNames().subscribe(data => {
       this.names = data;
     });
+
+    if (this.initial) {
+      this.q = this.initial.q;
+      this.search_by_name = this.initial.search_by_name === 'true' ? true : false;
+    }
+
+    if (this.search_by_name) {
+      this.placeholder = 'What is the name of stylist?';
+      this.search_by = ' By Name';
+    } else {
+      this.placeholder = 'What should stylist can do?';
+      this.search_by = ' By Skill';
+    }
+
   }
 
   changeSearchBy() {
+    const temp = this.last_q;
+    this.last_q = this.q;
+    this.q = temp;
     this.search_by_name = !this.search_by_name;
     if (this.search_by_name) {
       this.placeholder = 'What is the name of stylist?';
+      this.search_by = ' By Name';
     } else {
       this.placeholder = 'What should stylist can do?';
+      this.search_by = ' By Skill';
     }
   }
 
@@ -69,6 +91,11 @@ export class SearchComponent implements OnInit {
     this.myEvent.emit({q: this.q, search_by_name: this.search_by_name});
   }
 
+}
+
+interface InitialSearchBar {
+  q: string;
+  search_by_name: string;
 }
 
 

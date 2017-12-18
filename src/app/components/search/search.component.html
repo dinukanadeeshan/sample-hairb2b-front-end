@@ -1,14 +1,15 @@
-<form class="">
+<form class="" #searchForm>
   <div class="input-group">
     <div class="btn-group-vertical">
       <button class="btn btn-success btn-sm fa fa-caret-up" (click)="changeSearchBy()"></button>
       <button class="btn btn-success btn-sm fa fa-caret-down" (click)="changeSearchBy()"></button>
     </div>
-    <input id="searchStylist" type="text" class="form-control" placeholder={{placeholder}} [(ngModel)]="q"
-           [ngModelOptions]="{standalone: true}" [ngbTypeahead]="search_text">
+    <input #searchStylist type="text" class="form-control" placeholder={{placeholder}} [(ngModel)]="q"
+           [ngModelOptions]="{standalone: true}" [ngbTypeahead]="search_text" required>
 
     <button type="submit" class="btn btn-primary btn-md fa fa-search ml-2" routerLink="/search"
-            [queryParams]="{q: q, search_by_name: search_by_name}" (click)="search()"><b> Go!</b></button>
+            [queryParams]="{q: q, search_by_name: search_by_name}" (click)="search()"
+            [disabled]="!searchForm.checkValidity()"><b> {{search_by}}</b></button>
   </div>
 
 </form>
