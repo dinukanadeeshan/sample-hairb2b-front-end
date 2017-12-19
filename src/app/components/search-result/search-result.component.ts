@@ -1,7 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {Stylist} from '../../common';
+import {BusyDate, Stylist} from '../../common';
 import {StylistService} from '../../services/stylist.service';
 import {ActivatedRoute} from '@angular/router';
+import * as moment from 'moment';
+import {Moment} from 'moment';
+import {extendMoment} from 'moment-range';
+
+const m = extendMoment(moment);
 
 @Component({
   selector: 'app-search-result',
@@ -54,6 +59,10 @@ export class SearchResultComponent implements OnInit {
     }
   }
 
+  clearFilter() {
+    this.styist_list_ = this.search_results;
+  }
+
   filterResult($event) {
     let nonSelected = true;
     this.styist_list_ = this.search_results.filter(value => {
@@ -79,157 +88,59 @@ export class SearchResultComponent implements OnInit {
       }
       return false;
     });
+    if ($event.date_range.from && $event.date_range.to) {
+      const from = moment($event.date_range.from);
+      const to = moment($event.date_range.to);
+      if (from.isAfter(to)) {
+        return;
+      }
+      if (from.format('YYYY-MM-DD') !== to.format('YYYY-MM-DD')) {
 
+
+        this.styist_list_ = this.styist_list_.filter(sty => {
+
+          const range = m.range($event.date_range.from, $event.date_range.to);
+          const days = Array.from(range.by('days'));
+
+          for (const bd of sty.busyDates) {
+            const momentBusyDate = moment(bd.date);
+            if (momentBusyDate.isBetween(from, to)) {
+              const index = days.findIndex(value => {
+                if (value.format('YYYY-MM-DD') === momentBusyDate.format('YYYY-MM-DD') && this.isFullDayBusy(sty.busyDates, momentBusyDate)) {
+                  return true;
+                }
+                return false;
+              });
+              days.splice(index, 1);
+            }
+
+          }
+
+          // console.log(days.map(val => val.format('YYYY-MM-DD')));
+          return days.length > 0;
+        });
+      } else {
+        this.styist_list_ = this.styist_list_.filter(sty => {
+          for (const bd of sty.busyDates) {
+            if (moment(bd.date).format('YYYY-MM-DD') === from.format('YYYY-MM-DD') && this.isFullDayBusy(sty.busyDates, from)) {
+              return false;
+            }
+          }
+          return true;
+        });
+      }
+    }
 
   }
+
+  isFullDayBusy(busyDates: BusyDate[], date: Moment): boolean {
+    let count = 0;
+    for (const d of busyDates) {
+      if (moment(d.date).format('YYYY-MM-DD') === date.format('YYYY-MM-DD')) {
+        count++;
+      }
+    }
+
+    return count > 1;
+  }
 }
-
-
-//
-//
-// this.styist_list_ = [
-//   {
-//     id: 2,
-//     user_id: 1,
-//     is_active: true,
-//     created_date: new Date(),
-//     first_name: 'Sofia',
-//     last_name: 'Maekinen',
-//     job_role: 'Educator',
-//     profile_pic: '/dd/',
-//     address_line_1: 'U 235',
-//     address_line_2: '201-203 BROADWAY AVE',
-//     city: 'WEST BEACH',
-//     state: 'SA',
-//     zip: 5024,
-//     country: 'Australia',
-//     telephone: 711225455,
-//     description: 'Graduated as a hairdresser and barber 2014. Since then I have been working in 2 different salons in my homecountry Finland,' +
-//     ' one barber shop and 2 different salons in Australia in Cairns and Coffs Harbour. As a hairsalon assistant I have been working in 2 different high-end salons in Melbourne and Sydney.',
-//     terms_and_condition: '',
-//     skills: ['Bridal', 'Curling', 'Rebonding', 'Hair Coloring', 'Hair Cutting'],
-//     pref_locations: ['Perth', 'Darwin', 'Adelaide', 'Melbourne', 'Canberra', 'Hobart', 'Brisbane'],
-//     charges: [{name: '8AM-12PM', price: 10, currency: 'AUD'}, {name: '12PM-5PM', price: 15, currency: 'AUD'}],
-//     rating: 4
-//   },
-//   {
-//     id: 2,
-//     user_id: 1,
-//     is_active: true,
-//     created_date: new Date(),
-//     first_name: 'Sofia',
-//     last_name: 'Maekinen',
-//     job_role: 'Educator',
-//     profile_pic: '/dd/',
-//     address_line_1: 'U 235',
-//     address_line_2: '201-203 BROADWAY AVE',
-//     city: 'WEST BEACH',
-//     state: 'SA',
-//     zip: 5024,
-//     country: 'Australia',
-//     telephone: 711225455,
-//     description: 'Graduated as a hairdresser and barber 2014. Since then I have been working in 2 different salons in my homecountry Finland,' +
-//     ' one barber shop and 2 different salons in Australia in Cairns and Coffs Harbour. As a hairsalon assistant I have been working in 2 different high-end salons in Melbourne and Sydney.',
-//     terms_and_condition: '',
-//     skills: ['Bridal', 'Curling', 'Rebonding', 'Hair Coloring', 'Hair Cutting'],
-//     pref_locations: ['Perth', 'Darwin', 'Adelaide', 'Melbourne', 'Canberra', 'Hobart', 'Brisbane'],
-//     charges: [{name: '8AM-12PM', price: 10, currency: 'AUD'}, {name: '12PM-5PM', price: 15, currency: 'AUD'}],
-//     rating: 4
-//   },
-//   {
-//     id: 2,
-//     user_id: 1,
-//     is_active: true,
-//     created_date: new Date(),
-//     first_name: 'Sofia',
-//     last_name: 'Maekinen',
-//     job_role: 'Educator',
-//     profile_pic: '/dd/',
-//     address_line_1: 'U 235',
-//     address_line_2: '201-203 BROADWAY AVE',
-//     city: 'WEST BEACH',
-//     state: 'SA',
-//     zip: 5024,
-//     country: 'Australia',
-//     telephone: 711225455,
-//     description: 'Graduated as a hairdresser and barber 2014. Since then I have been working in 2 different salons in my homecountry Finland,' +
-//     ' one barber shop and 2 different salons in Australia in Cairns and Coffs Harbour. As a hairsalon assistant I have been working in 2 different high-end salons in Melbourne and Sydney.',
-//     terms_and_condition: '',
-//     skills: ['Bridal', 'Curling', 'Rebonding', 'Hair Coloring', 'Hair Cutting'],
-//     pref_locations: ['Perth', 'Darwin', 'Adelaide', 'Melbourne', 'Canberra', 'Hobart', 'Brisbane'],
-//     charges: [{name: '8AM-12PM', price: 10, currency: 'AUD'}, {name: '12PM-5PM', price: 15, currency: 'AUD'}],
-//     rating: 4
-//   },
-//   {
-//     id: 2,
-//     user_id: 1,
-//     is_active: true,
-//     created_date: new Date(),
-//     first_name: 'Sofia',
-//     last_name: 'Maekinen',
-//     job_role: 'Educator',
-//     profile_pic: '/dd/',
-//     address_line_1: 'U 235',
-//     address_line_2: '201-203 BROADWAY AVE',
-//     city: 'WEST BEACH',
-//     state: 'SA',
-//     zip: 5024,
-//     country: 'Australia',
-//     telephone: 711225455,
-//     description: 'Graduated as a hairdresser and barber 2014. Since then I have been working in 2 different salons in my homecountry Finland,' +
-//     ' one barber shop and 2 different salons in Australia in Cairns and Coffs Harbour. As a hairsalon assistant I have been working in 2 different high-end salons in Melbourne and Sydney.',
-//     terms_and_condition: '',
-//     skills: ['Bridal', 'Curling', 'Rebonding', 'Hair Coloring', 'Hair Cutting'],
-//     pref_locations: ['Perth', 'Darwin', 'Adelaide', 'Melbourne', 'Canberra', 'Hobart', 'Brisbane'],
-//     charges: [{name: '8AM-12PM', price: 10, currency: 'AUD'}, {name: '12PM-5PM', price: 15, currency: 'AUD'}],
-//     rating: 4
-//   },
-//   {
-//     id: 2,
-//     user_id: 1,
-//     is_active: true,
-//     created_date: new Date(),
-//     first_name: 'Sofia',
-//     last_name: 'Maekinen',
-//     job_role: 'Educator',
-//     profile_pic: '/dd/',
-//     address_line_1: 'U 235',
-//     address_line_2: '201-203 BROADWAY AVE',
-//     city: 'WEST BEACH',
-//     state: 'SA',
-//     zip: 5024,
-//     country: 'Australia',
-//     telephone: 711225455,
-//     description: 'Graduated as a hairdresser and barber 2014. Since then I have been working in 2 different salons in my homecountry Finland,' +
-//     ' one barber shop and 2 different salons in Australia in Cairns and Coffs Harbour. As a hairsalon assistant I have been working in 2 different high-end salons in Melbourne and Sydney.',
-//     terms_and_condition: '',
-//     skills: ['Bridal', 'Curling', 'Rebonding', 'Hair Coloring', 'Hair Cutting'],
-//     pref_locations: ['Perth', 'Darwin', 'Adelaide', 'Melbourne', 'Canberra', 'Hobart', 'Brisbane'],
-//     charges: [{name: '8AM-12PM', price: 10, currency: 'AUD'}, {name: '12PM-5PM', price: 15, currency: 'AUD'}],
-//     rating: 4
-//   },
-//   {
-//     id: 2,
-//     user_id: 1,
-//     is_active: true,
-//     created_date: new Date(),
-//     first_name: 'Sofia',
-//     last_name: 'Maekinen',
-//     job_role: 'Educator',
-//     profile_pic: '/dd/',
-//     address_line_1: 'U 235',
-//     address_line_2: '201-203 BROADWAY AVE',
-//     city: 'WEST BEACH',
-//     state: 'SA',
-//     zip: 5024,
-//     country: 'Australia',
-//     telephone: 711225455,
-//     description: 'Graduated as a hairdresser and barber 2014. Since then I have been working in 2 different salons in my homecountry Finland,' +
-//     ' one barber shop and 2 different salons in Australia in Cairns and Coffs Harbour. As a hairsalon assistant I have been working in 2 different high-end salons in Melbourne and Sydney.',
-//     terms_and_condition: '',
-//     skills: ['Bridal', 'Curling', 'Rebonding', 'Hair Coloring', 'Hair Cutting'],
-//     pref_locations: ['Perth', 'Darwin', 'Adelaide', 'Melbourne', 'Canberra', 'Hobart', 'Brisbane'],
-//     charges: [{name: '8AM-12PM', price: 10, currency: 'AUD'}, {name: '12PM-5PM', price: 15, currency: 'AUD'}],
-//     rating: 4
-//   }
-// ];

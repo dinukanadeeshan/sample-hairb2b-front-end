@@ -21,6 +21,9 @@ export class FilterComponent implements OnInit {
 
 
   @Output() filterEvent = new EventEmitter();
+  @Output() clearFilter = new EventEmitter();
+
+
 
   constructor(private commonService: CommonService) {
   }
@@ -58,5 +61,6 @@ export class FilterComponent implements OnInit {
     this.valueOfSlider = this.maxSlider;
     this.fromDate = null;
     this.toDate = null;
+    this.clearFilter.emit();
   }
 }

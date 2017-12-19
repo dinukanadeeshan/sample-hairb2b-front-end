@@ -24,8 +24,6 @@ export class CalendarCellComponent implements OnInit {
 
 
   click($event) {
-    console.log(this.selectedDay);
-
     this.clickEvent.emit({day: this.day});
   }
 
