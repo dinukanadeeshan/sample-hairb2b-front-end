@@ -11,7 +11,7 @@ import {ActivatedRoute} from '@angular/router';
 export class SearchResultComponent implements OnInit {
 
   styist_list_: Array<Stylist>;
-  search_results: Array<Stylist>;
+  search_results: Array<Stylist> = [];
   query: any;
 
   constructor(private stylistService: StylistService, private route: ActivatedRoute) {

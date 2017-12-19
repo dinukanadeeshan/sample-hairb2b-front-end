@@ -35,6 +35,8 @@ export class CalendarComponent implements OnInit {
 
     this.currentDate = this.today;
 
+    // console.log(this.stylist);
+
     this.generateCalendar();
 
     this.cellClicked = false;
@@ -56,7 +58,7 @@ export class CalendarComponent implements OnInit {
       this.selectedDate = $event.day.mDate;
       this.selectedDay = $event.day;
     }
-    console.log($event);
+    // console.log($event);
   }
 
 
@@ -72,12 +74,9 @@ export class CalendarComponent implements OnInit {
 
   fillDates(currentMoment: moment.Moment): CalendarDate[] {
 
-    const startOfWeek = moment('2017-12-26').startOf('week').day();
-
-    console.log('================================');
-    console.log(startOfWeek);
-
-    const firstOfMonth = moment(currentMoment).startOf('month').day();
+    // const startOfWeek = moment('2017-12-26').startOf('week').day();
+    //
+    // const firstOfMonth = moment(currentMoment).startOf('month').day();
 
     // const firstDayOfGrid = moment(currentMoment).startOf('month').subtract(firstOfMonth, 'days');
     // const start = firstDayOfGrid.date();
@@ -90,13 +89,9 @@ export class CalendarComponent implements OnInit {
         const d = moment(firstDayOfGrid).date(date);
         // console.log(d);
         return {
-          today: false,
           selected: false,
           mDate: d,
-          busy: this.isBusy(d),
           pending: this.isPending(d),
-          available: this.isAvailable(d),
-          partiallyBusy: this.isPartiallyBusy(d),
           thismonth: this.isThisMonth(d),
           timeSlots: this.timeSlots(d)
         };
@@ -128,20 +123,7 @@ export class CalendarComponent implements OnInit {
     this.current++;
   }
 
-  isBusy(d): boolean {
-    return _.sample([true, false]);
-    // return false;
-  }
-
   isPending(d): boolean {
-    return false;
-  }
-
-  isAvailable(d): boolean {
-    return false;
-  }
-
-  isPartiallyBusy(d): boolean {
     return false;
   }
 
@@ -150,10 +132,48 @@ export class CalendarComponent implements OnInit {
   }
 
   timeSlots(d) {
-    return [
-      {name: '8AM - 12PM', charge: 10, currency: 'AUD', booked: this.isBusy(d), justBooked: false},
-      {name: '12PM - 5PM', charge: 15, currency: 'AUD', booked: this.isBusy(d), justBooked: false}
-    ];
+    const timeSlots = [];
+    // console.log(this.stylist);
+    for (let j = 0; j < this.stylist.charges.length; j++) {
+
+      let dateExist = false;
+      let timeSExist = false;
+      for (let i = 0; i < this.stylist.busyDates.length; i++) {
+        if (this.stylist.busyDates[i].date.substr(0, 10) === d.format('YYYY-MM-DD')) {
+          dateExist = true;
+          const t = this.stylist.busyDates[i].timeSlot;
+          if (t.name === this.stylist.charges[j].name) {
+            timeSExist = true;
+            // console.log('time exist');
+            timeSlots.push({
+              name: t.name,
+              charge: t.charge,
+              currency: t.currency,
+              booked: true,
+              justBooked: false
+            });
+          }
+        }
+      }
+      if (!dateExist || !timeSExist) {
+        timeSlots.push({
+          name: this.stylist.charges[j].name,
+          charge: this.stylist.charges[j].charge,
+          currency: this.stylist.charges[j].currency,
+          booked: false,
+          justBooked: false
+        });
+      }
+    }
+
+
+    // console.log(timeSlots);
+    return timeSlots;
+
+    // return [
+    //   {name: '8AM - 12PM', charge: 10, currency: 'AUD', booked: this.isBusy(d), justBooked: false},
+    //   {name: '12PM - 5PM', charge: 15, currency: 'AUD', booked: this.isBusy(d), justBooked: false}
+    // ];
   }
 
   bookASlot($event) {

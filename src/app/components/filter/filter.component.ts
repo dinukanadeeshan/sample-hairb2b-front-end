@@ -56,6 +56,7 @@ export class FilterComponent implements OnInit {
       return {id: val.id, role: val.role, selected: false};
     });
     this.valueOfSlider = this.maxSlider;
-
+    this.fromDate = null;
+    this.toDate = null;
   }
 }

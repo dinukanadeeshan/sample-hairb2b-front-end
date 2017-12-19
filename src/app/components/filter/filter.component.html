@@ -58,14 +58,14 @@
 
         <mat-form-field>
           <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="pickerFrom" placeholder="From"
-                 [(ngModel)]="fromDate">
+                 [(ngModel)]="fromDate" (dateChange)="applyFilters()">
           <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
           <mat-datepicker #pickerFrom></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field>
           <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="pickerTo" placeholder="To"
-                 [(ngModel)]="toDate">
+                 [(ngModel)]="toDate" (dateChange)="applyFilters()">
           <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
           <mat-datepicker #pickerTo></mat-datepicker>
         </mat-form-field>
@@ -76,7 +76,7 @@
     </div>
     <hr>
     <!--<button class="btn btn-info" (click)="applyFilters()">Apply</button>-->
-    <button class="btn btn-warning" (click)="clearFilters()">Clear</button>
+    <button class="btn btn-warning" (click)="clearFilters()">clear filters</button>
   </div>
 
 

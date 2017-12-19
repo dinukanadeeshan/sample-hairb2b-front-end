@@ -24,7 +24,7 @@
       </div>
       <hr>
       <div class="">
-        <app-calendar [stylist]="stylist"></app-calendar>
+        <app-calendar *ngIf="stylist.is_active" [stylist]="stylist"></app-calendar>
       </div>
 
       <hr>

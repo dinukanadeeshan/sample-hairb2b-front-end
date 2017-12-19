@@ -13,7 +13,6 @@ export class StylistProfileComponent implements OnInit {
 
 
   stylist: Stylist;
-  img: any;
 
   constructor(private route: ActivatedRoute, private stylistService: StylistService, private commonService: CommonService) {
   }
@@ -41,7 +40,8 @@ export class StylistProfileComponent implements OnInit {
       skills: [],
       pref_locations: [],
       charges: [],
-      rating: 0
+      rating: 0,
+      busyDates: []
     };
 
     const id = +this.route.snapshot.paramMap.get('id');

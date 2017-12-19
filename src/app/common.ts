@@ -22,6 +22,7 @@ export interface Stylist {
   pref_locations: Array<string>;
   charges: Array<TimeSlot>;
   rating: number;
+  busyDates: BusyDate[];
 }
 
 
@@ -34,11 +35,7 @@ export interface ChargePerSlot {
 export interface CalendarDate {
   mDate: moment.Moment;
   selected?: boolean;
-  today?: boolean;
-  busy?: boolean;
   pending?: boolean;
-  available?: boolean;
-  partiallyBusy?: boolean;
   thismonth?: boolean;
   timeSlots: TimeSlot[];
 }
@@ -70,4 +67,11 @@ export interface JobRoleFilter {
   id: number;
   role: string;
   selected?: boolean;
+}
+
+export interface BusyDate {
+  id: number;
+  date: string;
+  timeSlot: TimeSlot;
+  type: string;
 }
