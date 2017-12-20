@@ -29,12 +29,40 @@ export class SearchResultComponent implements OnInit {
     if (this.query.search_by_name === 'true') {
       this.stylistService.getStylistByName(this.query.q).subscribe(data => {
         this.styist_list_ = data;
+        this.styist_list_ = this.styist_list_.map(stylist => {
+
+          this.stylistService.getChargesForStylist(stylist.id).subscribe(data_ => {
+            stylist.charges = data_;
+          });
+          return stylist;
+        });
+        this.styist_list_ = this.styist_list_.map(stylist => {
+          this.stylistService.getPrefLocationsForStylist(stylist.id).subscribe(data_ => {
+            stylist.pref_locations = data_;
+          });
+          return stylist;
+        });
+
         this.search_results = this.styist_list_;
       });
     } else {
       console.log('search by skill no');
       this.stylistService.getStylistBySkill(this.query.q).subscribe(data => {
         this.styist_list_ = data;
+        this.styist_list_ = this.styist_list_.map(stylist => {
+
+          this.stylistService.getChargesForStylist(stylist.id).subscribe(data_ => {
+            stylist.charges = data_;
+          });
+          return stylist;
+        });
+
+        this.styist_list_ = this.styist_list_.map(stylist => {
+          this.stylistService.getPrefLocationsForStylist(stylist.id).subscribe(data_ => {
+            stylist.pref_locations = data_;
+          });
+          return stylist;
+        });
         this.search_results = this.styist_list_;
       });
     }
@@ -105,7 +133,7 @@ export class SearchResultComponent implements OnInit {
           for (const bd of sty.busyDates) {
             const momentBusyDate = moment(bd.date);
             if (momentBusyDate.isBetween(from, to)) {
-              const index = days.findIndex(value => {
+              const index = days.findIndex((value: Moment) => {
                 if (value.format('YYYY-MM-DD') === momentBusyDate.format('YYYY-MM-DD') && this.isFullDayBusy(sty.busyDates, momentBusyDate)) {
                   return true;
                 }

@@ -28,7 +28,7 @@ export interface Stylist {
 
 export interface ChargePerSlot {
   name: string;
-  price: number;
+  charge: number;
   currency: string;
 }
 
@@ -75,3 +75,4 @@ export interface BusyDate {
   timeSlot: TimeSlot;
   type: string;
 }
+

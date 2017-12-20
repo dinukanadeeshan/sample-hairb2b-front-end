@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Stylist} from '../common';
+import {ChargePerSlot, Stylist} from '../common';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 
@@ -37,5 +37,12 @@ export class StylistService {
     return this.http.get<Stylist[]>('/api/v1/stylist/gettopstylists');
   }
 
+  getChargesForStylist(id): Observable<ChargePerSlot[]> {
+    return this.http.get<ChargePerSlot[]>('/api/v1/stylist/getchargesforstylist/' + id);
+  }
+
+  getPrefLocationsForStylist(id): Observable<string[]> {
+    return this.http.get<string[]>('/api/v1/stylist/getpreflocationsforstylist/' + id);
+  }
 
 }
