@@ -1,5 +1,6 @@
 <div class="home-inner">
-  <div class="container bg-light">
+  <div style="height: 800px" *ngIf="!data_recieved"></div>
+  <div class="container bg-light" *ngIf="data_recieved">
     <div class="pt-2">
       <div class="text-center">
         <img src="data:image/jpg;base64,{{stylist.profile_pic}}" alt="Red dot" class="profile-pic rounded"/>

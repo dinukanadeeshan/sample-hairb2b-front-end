@@ -18,6 +18,7 @@ export class SearchResultComponent implements OnInit {
   styist_list_: Array<Stylist>;
   search_results: Array<Stylist> = [];
   query: any;
+  data_recieved = false;
 
   constructor(private stylistService: StylistService, private route: ActivatedRoute) {
   }
@@ -29,41 +30,15 @@ export class SearchResultComponent implements OnInit {
     if (this.query.search_by_name === 'true') {
       this.stylistService.getStylistByName(this.query.q).subscribe(data => {
         this.styist_list_ = data;
-        this.styist_list_ = this.styist_list_.map(stylist => {
-
-          this.stylistService.getChargesForStylist(stylist.id).subscribe(data_ => {
-            stylist.charges = data_;
-          });
-          return stylist;
-        });
-        this.styist_list_ = this.styist_list_.map(stylist => {
-          this.stylistService.getPrefLocationsForStylist(stylist.id).subscribe(data_ => {
-            stylist.pref_locations = data_;
-          });
-          return stylist;
-        });
-
         this.search_results = this.styist_list_;
+        this.data_recieved = true;
       });
     } else {
       console.log('search by skill no');
       this.stylistService.getStylistBySkill(this.query.q).subscribe(data => {
         this.styist_list_ = data;
-        this.styist_list_ = this.styist_list_.map(stylist => {
-
-          this.stylistService.getChargesForStylist(stylist.id).subscribe(data_ => {
-            stylist.charges = data_;
-          });
-          return stylist;
-        });
-
-        this.styist_list_ = this.styist_list_.map(stylist => {
-          this.stylistService.getPrefLocationsForStylist(stylist.id).subscribe(data_ => {
-            stylist.pref_locations = data_;
-          });
-          return stylist;
-        });
         this.search_results = this.styist_list_;
+        this.data_recieved = true;
       });
     }
   }
@@ -71,18 +46,20 @@ export class SearchResultComponent implements OnInit {
   call($event) {
     // this.route.queryParams.subscribe(v => this.query = v);
 
-
+    this.data_recieved = false;
     console.log(this.query);
 
     if ($event.search_by_name) {
       this.stylistService.getStylistByName($event.q).subscribe(data => {
         this.styist_list_ = data;
         this.search_results = this.styist_list_;
+        this.data_recieved = true;
       });
     } else {
       this.stylistService.getStylistBySkill($event.q).subscribe(data => {
         this.styist_list_ = data;
         this.search_results = this.styist_list_;
+        this.data_recieved = true;
       });
     }
   }

@@ -13,6 +13,7 @@ export class StylistProfileComponent implements OnInit {
 
 
   stylist: Stylist;
+  data_recieved = false;
 
   constructor(private route: ActivatedRoute, private stylistService: StylistService, private commonService: CommonService) {
   }
@@ -49,9 +50,7 @@ export class StylistProfileComponent implements OnInit {
     this.stylistService.getStylistProfile(id).subscribe(data => {
       console.log(data);
       this.stylist = data;
-      this.stylistService.getChargesForStylist(this.stylist.id).subscribe(data_ => {
-        this.stylist.charges = data_;
-      });
+      this.data_recieved = true;
     });
 
 

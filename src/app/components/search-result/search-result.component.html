@@ -18,9 +18,14 @@
 
           <app-search-card [stylist]="stylist" class="m-1"></app-search-card>
         </div>
-        <div class="alert alert-danger" *ngIf="query.q && search_results.length < 1">
+        <div class="alert alert-danger" *ngIf="query.q && search_results.length < 1 && data_recieved">
           <span>No results found for {{query.q}}</span>
         </div>
+        <div class="alert alert-info" *ngIf="query.q && search_results.length < 1">
+          <span>Searching for {{query.q}}...</span>
+        </div>
+
+
       </div>
 
 
