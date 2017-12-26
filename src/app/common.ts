@@ -23,6 +23,7 @@ export interface Stylist {
   charges: Array<TimeSlot>;
   rating: number;
   busyDates: BusyDate[];
+  gallery: string[];
 }
 
 

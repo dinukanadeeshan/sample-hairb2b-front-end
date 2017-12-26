@@ -32,6 +32,7 @@ import {BookingPanelComponent} from './components/booking-panel/booking-panel.co
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {CommonService} from './services/common.service';
+import {NgxGalleryModule} from 'ngx-gallery';
 
 const appRoutes: Routes = [
   {path: 'search', component: SearchResultComponent},
@@ -80,7 +81,8 @@ const appRoutes: Routes = [
     MatDatepickerModule,
     MatInputModule,
     MatFormFieldModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    NgxGalleryModule
   ],
   providers: [StylistService, CommonService],
   bootstrap: [AppComponent]
