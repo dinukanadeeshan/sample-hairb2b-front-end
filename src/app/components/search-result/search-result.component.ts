@@ -72,6 +72,10 @@ export class SearchResultComponent implements OnInit {
     let nonSelected = true;
     this.styist_list_ = this.search_results.filter(value => {
       for (let i = 0; i < $event.job_roles.length; i++) {
+        console.log($event.job_roles[i].role + '  ' + value.job_role);
+        if ($event.job_roles[i].selected) {
+          nonSelected = false;
+        }
         if ($event.job_roles[i].selected && $event.job_roles[i].role === value.job_role) {
           nonSelected = false;
           return true;
