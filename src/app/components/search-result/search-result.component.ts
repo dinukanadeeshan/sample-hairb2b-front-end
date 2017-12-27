@@ -72,7 +72,7 @@ export class SearchResultComponent implements OnInit {
     let nonSelected = true;
     this.styist_list_ = this.search_results.filter(value => {
       for (let i = 0; i < $event.job_roles.length; i++) {
-        console.log($event.job_roles[i].role + '  ' + value.job_role);
+        // console.log($event.job_roles[i].role + '  ' + value.job_role);
         if ($event.job_roles[i].selected) {
           nonSelected = false;
         }
@@ -110,28 +110,32 @@ export class SearchResultComponent implements OnInit {
 
           const range = m.range($event.date_range.from, $event.date_range.to);
           const days = Array.from(range.by('days'));
-
           for (const bd of sty.busyDates) {
-            const momentBusyDate = moment(bd.date);
-            if (momentBusyDate.isBetween(from, to)) {
-              const index = days.findIndex((value: Moment) => {
-                if (value.format('YYYY-MM-DD') === momentBusyDate.format('YYYY-MM-DD') && this.isFullDayBusy(sty.busyDates, momentBusyDate)) {
-                  return true;
-                }
-                return false;
-              });
-              days.splice(index, 1);
-            }
+            const momentBusyDate = moment(bd.date.substr(0, 10));
 
+            // console.log(bd.date + ' ' + sty.first_name + ' ' + $event.date_range.from + ' ' + $event.date_range.to);
+            // console.log(from + ' ' + to + ' - ' + momentBusyDate);
+            if (momentBusyDate.isBetween(from, to) || from.format('YYYY-MM-DD') === momentBusyDate.format('YYYY-MM-DD') || to.format('YYYY-MM-DD') === momentBusyDate.format('YYYY-MM-DD')) {
+              // const index = days.findIndex((value: Moment) => {
+              //   if (value.format('YYYY-MM-DD') === momentBusyDate.format('YYYY-MM-DD') && this.isFullDayBusy(sty.busyDates, momentBusyDate)) {
+              //     return true;
+              //   }
+
+              return false;
+              // });
+              // days.splice(index, 1);
+            }
           }
+          return true;
 
           // console.log(days.map(val => val.format('YYYY-MM-DD')));
-          return days.length > 0;
+          // return days.length > 0;
         });
       } else {
         this.styist_list_ = this.styist_list_.filter(sty => {
           for (const bd of sty.busyDates) {
-            if (moment(bd.date).format('YYYY-MM-DD') === from.format('YYYY-MM-DD') && this.isFullDayBusy(sty.busyDates, from)) {
+            // if (moment(bd.date).format('YYYY-MM-DD') === from.format('YYYY-MM-DD') && this.isFullDayBusy(sty.busyDates, from)) {
+            if (moment(bd.date).format('YYYY-MM-DD') === from.format('YYYY-MM-DD')) {
               return false;
             }
           }

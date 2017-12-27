@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import {CommonService} from '../../services/common.service';
-import {Skill} from '../../common';
+import {JobRoleFilter, Skill} from '../../common';
 import {StylistService} from '../../services/stylist.service';
 
 // import $ = require('jquery');
@@ -32,6 +32,10 @@ export class SearchComponent implements OnInit {
   q: string;
 
   last_q: string;
+  job_roles;
+  job_role_filters: JobRoleFilter[] = [];
+  maxSlider = 100;
+  valueOfSlider = 100;
 
   search_text = (text$: Observable<string>) =>
     text$
@@ -71,6 +75,15 @@ export class SearchComponent implements OnInit {
       this.search_by = ' By Skill';
     }
 
+
+    this.commonService.getJobRoles().subscribe(data => {
+      this.job_roles = data;
+      this.job_role_filters = this.job_roles.map(val => {
+
+        return {id: val.id, role: val.role, selected: false};
+      });
+
+    });
   }
 
   changeSearchBy() {
