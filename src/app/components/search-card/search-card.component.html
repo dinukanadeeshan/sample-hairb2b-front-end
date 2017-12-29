@@ -34,14 +34,19 @@
       </div>
       <p class="text-muted">{{stylist.description}}</p>
 
-      <div class="">
-        <mat-chip-list>
+      <div class="mat-h3">
 
-          <mat-chip *ngFor="let skill of stylist.skills" [selected]="true">{{skill}}</mat-chip>
+        <span class="m-1 badge badge-pill skill-badge" [ngClass]=""
+              *ngFor="let skill of stylist.skills">{{skill}}</span>
 
-        </mat-chip-list>
+        <!--<mat-chip-list>-->
+
+        <!--<mat-chip *ngFor="let skill of stylist.skills" [selected]="true">{{skill}}</mat-chip>-->
+
+        <!--</mat-chip-list>-->
         <div class="d-flex justify-content-end mt-2">
-          <button class="btn btn-outline-primary btn-lg" routerLink="/profile/view/stylist/{{stylist.id}}">view
+          <button class="btn btn-outline-primary btn-lg align-self-start"
+                  routerLink="/profile/view/stylist/{{stylist.id}}">view
             profile
           </button>
         </div>

@@ -1,8 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, Renderer, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Stylist} from '../../common';
 import {StylistService} from '../../services/stylist.service';
-import {CommonService} from '../../services/common.service';
 import {NgxGalleryImage, NgxGalleryOptions} from 'ngx-gallery';
 
 @Component({
@@ -12,14 +11,14 @@ import {NgxGalleryImage, NgxGalleryOptions} from 'ngx-gallery';
 })
 export class StylistProfileComponent implements OnInit {
 
-
+  @ViewChild('calendar') suggestion: ElementRef;
   stylist: Stylist;
   data_recieved = false;
 
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
 
-  constructor(private route: ActivatedRoute, private stylistService: StylistService, private commonService: CommonService) {
+  constructor(private route: ActivatedRoute, private stylistService: StylistService, private renderer: Renderer, private el: ElementRef) {
   }
 
   ngOnInit() {
@@ -105,6 +104,11 @@ export class StylistProfileComponent implements OnInit {
     console.log(this.stylist.gallery);
 
 
+  }
+
+  clicked() {
+    // this.renderer.invokeElementMethod(this.el.nativeElement, 'focus', []);
+    this.el.nativeElement.focus();
   }
 
 }

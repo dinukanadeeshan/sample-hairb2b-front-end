@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 import {Booking, CalendarDate, Stylist} from '../../common';
@@ -25,6 +25,8 @@ export class CalendarComponent implements OnInit {
 
   justBookedList: Booking[] = [];
   totalOfJustBooked: number;
+
+  @Output() clicked = new EventEmitter();
 
   constructor() {
   }
@@ -207,6 +209,8 @@ export class CalendarComponent implements OnInit {
         return sum + current;
       });
     }
+
+    this.clicked.emit();
   }
 
 
