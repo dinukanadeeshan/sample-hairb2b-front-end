@@ -34,11 +34,12 @@
       </div>
       <p class="text-muted">{{stylist.description}}</p>
 
+
       <div class="mat-h3">
 
-        <span class="m-1 badge badge-pill skill-badge" [ngClass]=""
+        <span class="m-1 badge badge-pill"
+              [ngClass]="skill === selected_skill ? 'skill-badge-selected' :  'skill-badge'"
               *ngFor="let skill of stylist.skills">{{skill}}</span>
-
         <!--<mat-chip-list>-->
 
         <!--<mat-chip *ngFor="let skill of stylist.skills" [selected]="true">{{skill}}</mat-chip>-->

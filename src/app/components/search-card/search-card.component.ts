@@ -10,6 +10,7 @@ export class SearchCardComponent implements OnInit {
 
 
   @Input() stylist: Stylist;
+  @Input() selected_skill;
 
   constructor() {
   }

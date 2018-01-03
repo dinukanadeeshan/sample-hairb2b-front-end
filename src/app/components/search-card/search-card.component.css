@@ -20,11 +20,11 @@
   width: 100px;
 }
 
-.skill-badge {
+.skill-badge-selected {
   background-color: #d15b47;
 }
 
-.skill-badge:nth-child(odd) {
+.skill-badge {
   background-color: cadetblue;
 }
 

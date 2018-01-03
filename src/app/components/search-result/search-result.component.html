@@ -17,12 +17,13 @@
       <div class="result">
         <div *ngFor="let stylist of styist_list_">
 
-          <app-search-card [stylist]="stylist" class="m-1"></app-search-card>
+          <app-search-card [stylist]="stylist" [selected_skill]="query.search_by_name === 'true' ? '' : query.q"
+                           class="m-1"></app-search-card>
         </div>
         <div class="alert alert-danger" *ngIf="query.q && search_results.length < 1 && data_recieved">
           <span>No results found for {{query.q}}</span>
         </div>
-        <div class="alert alert-info" *ngIf="query.q && search_results.length < 1">
+        <div class="alert alert-info" *ngIf="query.q && search_results.length < 1 && !data_recieved">
           <span>Searching for {{query.q}}...</span>
         </div>
 

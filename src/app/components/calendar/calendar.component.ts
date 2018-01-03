@@ -130,7 +130,9 @@ export class CalendarComponent implements OnInit {
   }
 
   isThisMonth(d): boolean {
-    return (this.currentDate.format('DD') < d.format('DD') && this.currentDate.format('MM') === d.format('MM')) || this.currentDate.format('MM') > d.format('MM');
+    console.log(d.format('MM DD') + ' : ' + this.currentDate.format('MM DD'));
+    console.log(this.currentDate.format('MM') > d.format('MM'));
+    return (+this.currentDate.format('DD') < +d.format('DD') && this.currentDate.format('MM') === d.format('MM')) || +this.currentDate.format('M') < +d.format('M') && +this.currentDate.format('YYY') === +d.format('YYY');
   }
 
   timeSlots(d) {

@@ -13,33 +13,34 @@
 
     <div class="btn-group ml-1">
 
-      <button type="button" class="btn btn-success dropdown-toggle" data-toggle="popover" data-placement="bottom"
+      <button type="button" class="btn btn-success" data-toggle="popover" data-placement="bottom"
               data-popover-content="#a1">
-        Advanced
+        <i class="ion-arrow-down-b"></i>
       </button>
       <div id="a1">
 
         <div hidden class="popover-body">
           <div class="m-1">
-            <div class="input-group mt-2" *ngFor="let role of job_role_filters">
-            <span class="input-group-addon">
+            <div class="mat-h3">I need</div>
+            <div class="input-group" *ngFor="let role of job_role_filters">
+              <span class="input-group-addon">
 
-              <input class="" type="checkbox" (change)="role.selected = !role.selected; applyFilters()">
-            </span>
+                <input class="" type="checkbox" (change)="role.selected = !role.selected; applyFilters()">
+              </span>
               <label class="form-control">
                 {{role.role}}
               </label>
             </div>
           </div>
-          <hr>
-          <div class="m-1">
+          <!--<hr>-->
+          <!--<div class="m-1">-->
 
-            <mat-slider min="0" [max]="maxSlider" [step]="1" [(ngModel)]="valueOfSlider" [thumbLabel]="true"
-                        [ngModelOptions]="{standalone: true}"></mat-slider>
-            <label class="mat-h5">
-              AUD {{valueOfSlider}}
-            </label>
-          </div>
+          <!--<mat-slider min="0" [max]="maxSlider" [step]="1" [(ngModel)]="valueOfSlider" [thumbLabel]="true"-->
+          <!--[ngModelOptions]="{standalone: true}"></mat-slider>-->
+          <!--<label class="mat-h5">-->
+          <!--AUD {{valueOfSlider}}-->
+          <!--</label>-->
+          <!--</div>-->
         </div>
 
       </div>
