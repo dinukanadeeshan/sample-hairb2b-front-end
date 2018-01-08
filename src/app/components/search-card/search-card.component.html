@@ -7,7 +7,8 @@
          class="profile-pic align-self-start mr-3 rounded">
     <div class="media-body">
 
-      <h4>{{stylist.first_name}} {{stylist.last_name}} <span class="badge badge-success">{{stylist.job_role}}</span></h4>
+      <h4>{{stylist.first_name}} {{stylist.last_name}} <span class="badge badge-success">{{stylist.job_role}}</span>
+      </h4>
 
       <div class="row">
         <div class="col-8">
@@ -38,7 +39,7 @@
       <div class="mat-h3">
 
         <span class="m-1 badge badge-pill"
-              [ngClass]="skill === selected_skill ? 'skill-badge-selected' :  'skill-badge'"
+              [ngClass]="skill === selected_skill ? 'skill-badge-selected' : 'skill-badge'"
               *ngFor="let skill of stylist.skills">{{skill}}</span>
         <!--<mat-chip-list>-->
 
@@ -47,8 +48,8 @@
         <!--</mat-chip-list>-->
         <div class="d-flex justify-content-end mt-2">
           <button class="btn btn-outline-primary btn-lg align-self-start"
-                  routerLink="/profile/view/stylist/{{stylist.id}}">view
-            profile
+                  routerLink="/profile/view/stylist/{{stylist.id}}">
+            view profile
           </button>
         </div>
       </div>

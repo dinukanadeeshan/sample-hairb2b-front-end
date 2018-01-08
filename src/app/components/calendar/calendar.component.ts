@@ -65,6 +65,7 @@ export class CalendarComponent implements OnInit {
 
 
   generateCalendar(): void {
+    console.log(this.currentDate);
     const dates = this.fillDates(this.currentDate);
     const weeks: CalendarDate[][] = [];
     while (dates.length > 0) {
@@ -83,7 +84,7 @@ export class CalendarComponent implements OnInit {
     // const firstDayOfGrid = moment(currentMoment).startOf('month').subtract(firstOfMonth, 'days');
     // const start = firstDayOfGrid.date();
 
-    const firstDayOfGrid = moment('2017-12-26').startOf('week');
+    const firstDayOfGrid = moment(currentMoment).startOf('week');
     const start = moment(currentMoment).startOf('week').date();
 
     return _.range(start, start + 35)
