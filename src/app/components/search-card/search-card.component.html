@@ -11,7 +11,7 @@
       </h4>
 
       <div class="row">
-        <div class="col-8">
+        <div class="col-lg-8 col-md-6 col-sm-3">
           <div class="">
             <h6><i class="ion-location" aria-hidden="true"></i> Preferred Locations</h6>
             <div>
@@ -23,11 +23,13 @@
           </div>
           <rating [(ngModel)]="stylist.rating" [readonly]="true"></rating>
         </div>
-        <div class="col-4">
-          <div class="btn m-1 outline-success pl-2 pt-2 rounded" *ngFor="let time_slot of stylist.charges">
-            <label>
-              <kbd class="bg-d-green font-weight-bold">{{time_slot.name}}</kbd>
-            </label> <label class="ml-3 bg-dark text-weight-bold">{{time_slot.currency}}
+        <div class="col-lg-4 col-md-6 col-sm-9">
+          <div class="btn  m-1 outline-success rounded" *ngFor="let time_slot of stylist.charges">
+
+            <label class="">
+              <span class="bg-d-green badge font-weight-bold">{{time_slot.name}}</span>
+            </label>
+            <label class="ml-3 bg-dark text-weight-bold">{{time_slot.currency}}
             <b>{{time_slot.charge}}</b></label>
           </div>
           <!--<label><kbd class="bg-d-orange font-weight-bold">12PM-5PM</kbd></label>-->

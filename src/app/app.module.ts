@@ -62,7 +62,6 @@ const appRoutes: Routes = [
     CalendarCellComponent,
     BookingCellComponent,
     BookingPanelComponent
-
   ],
   imports: [
     BrowserModule,
@@ -87,5 +86,6 @@ const appRoutes: Routes = [
   providers: [StylistService, CommonService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }

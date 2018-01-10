@@ -17,8 +17,8 @@ export class FilterComponent implements OnInit {
   maxDate: Date;
   fromDate: Date;
   toDate: Date;
-  toggleCollapse = false;
-
+  toggleCollapse = true;
+  data_recieved = false;
 
   @Output() filterEvent = new EventEmitter();
   @Output() clearFilter = new EventEmitter();
@@ -33,6 +33,7 @@ export class FilterComponent implements OnInit {
       this.job_roles = data;
       this.job_role_filters = this.job_roles.map(val => {
 
+        this.data_recieved = true;
         return {id: val.id, role: val.role, selected: false};
       });
 

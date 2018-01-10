@@ -1,50 +1,54 @@
 <form class="" #searchForm>
-  <div class="input-group">
-    <div class="btn-group-vertical">
-      <button class="btn btn-success btn-sm fa fa-caret-up" (click)="changeSearchBy()"></button>
-      <button class="btn btn-success btn-sm fa fa-caret-down" (click)="changeSearchBy()"></button>
-    </div>
-    <input #searchStylist type="text" class="form-control" placeholder={{placeholder}} [(ngModel)]="q"
-           [ngModelOptions]="{standalone: true}" [ngbTypeahead]="search_text" required>
+  <div class="row">
+    <div class="input-group">
+      <div class="btn-group-vertical">
+        <button class="btn btn-success btn-sm fa fa-caret-up" (click)="changeSearchBy()"></button>
+        <button class="btn btn-success btn-sm fa fa-caret-down" (click)="changeSearchBy()"></button>
+      </div>
 
-    <button type="submit" class="btn btn-primary btn-md fa fa-search ml-2" routerLink="/search"
-            [queryParams]="{q: q, search_by_name: search_by_name}" (click)="search()"
-            [disabled]="!searchForm.checkValidity()"><b> {{search_by}}</b></button>
+      <input #searchStylist type="text" class="form-control" placeholder={{placeholder}} [(ngModel)]="q"
+             [ngModelOptions]="{standalone: true}" [ngbTypeahead]="search_text" required>
 
-    <div class="btn-group ml-1">
-
-      <button type="button" class="btn btn-success" data-toggle="popover" data-placement="bottom"
+      <button type="submit" class="btn btn-primary btn-md fa fa-search ml-2 hidden-xs-down" routerLink="/search"
+              [queryParams]="{q: q, search_by_name: search_by_name}" (click)="search()"
+              [disabled]="!searchForm.checkValidity()"><b> {{search_by}}</b></button>
+      <button type="submit" class="btn btn-primary btn-md fa fa-search ml-2 hidden-sm-up " routerLink="/search"
+              [queryParams]="{q: q, search_by_name: search_by_name}" (click)="search()"
+              [disabled]="!searchForm.checkValidity()"></button>
+      <button type="button" class="btn btn-success hidden-sm-down ml-1" data-toggle="popover" data-placement="bottom"
               data-popover-content="#a1">
         <i class="ion-arrow-down-b"></i>
       </button>
-      <div id="a1">
+    </div>
+    <div id="a1" class="hidden-sm-down">
 
-        <div hidden class="popover-body">
-          <div class="m-1">
-            <div class="mat-h3">I need</div>
-            <div class="input-group" *ngFor="let role of job_role_filters">
+      <div hidden class="popover-body">
+        <div class="m-1">
+          <div class="mat-h3">I need</div>
+          <div class="input-group" *ngFor="let role of job_role_filters">
               <span class="input-group-addon">
 
                 <input class="" type="checkbox" (change)="role.selected = !role.selected; applyFilters()">
               </span>
-              <label class="form-control">
-                {{role.role}}
-              </label>
-            </div>
+            <label class="form-control">
+              {{role.role}}
+            </label>
           </div>
-          <!--<hr>-->
-          <!--<div class="m-1">-->
-
-          <!--<mat-slider min="0" [max]="maxSlider" [step]="1" [(ngModel)]="valueOfSlider" [thumbLabel]="true"-->
-          <!--[ngModelOptions]="{standalone: true}"></mat-slider>-->
-          <!--<label class="mat-h5">-->
-          <!--AUD {{valueOfSlider}}-->
-          <!--</label>-->
-          <!--</div>-->
         </div>
+        <!--<hr>-->
+        <!--<div class="m-1">-->
 
+        <!--<mat-slider min="0" [max]="maxSlider" [step]="1" [(ngModel)]="valueOfSlider" [thumbLabel]="true"-->
+        <!--[ngModelOptions]="{standalone: true}"></mat-slider>-->
+        <!--<label class="mat-h5">-->
+        <!--AUD {{valueOfSlider}}-->
+        <!--</label>-->
+        <!--</div>-->
       </div>
+
     </div>
 
   </div>
+
+
 </form>

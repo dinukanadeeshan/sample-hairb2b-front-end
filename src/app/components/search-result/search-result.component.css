@@ -9,3 +9,19 @@
 .bg-d-green {
   background-color: darkgreen;
 }
+
+.sm-display {
+  padding-left: 0px;
+}
+
+@media only screen and (max-width: 990px) {
+  .sm-display {
+    padding-left: 50px;
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+  .col-md-11 {
+    width: 91.66%;
+  }
+}

@@ -46,7 +46,7 @@
       <!--dates of calendar-->
 
       <div class="row mt-1 mb-1" *ngFor="let week of weeks">
-        <div class="col" *ngFor="let day of week">
+        <div class="col col-md col-sm-6" *ngFor="let day of week">
           <app-calendar-cell [selectedDay]="selectedDay" [day]="day"
                              (clickEvent)="showBookingDiv($event)"></app-calendar-cell>
         </div>

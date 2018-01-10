@@ -28,3 +28,18 @@
 .right-to{
   text-align: right;
 }
+
+@media (max-width: 576px) {
+  .md-center {
+    text-align: center;
+  }
+}
+
+.md-center {
+  text-align: center;
+}
+
+.list {
+  text-align: center;
+  list-style: none;
+}
