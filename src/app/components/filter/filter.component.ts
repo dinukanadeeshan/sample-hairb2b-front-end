@@ -17,7 +17,7 @@ export class FilterComponent implements OnInit {
   maxDate: Date;
   fromDate: Date;
   toDate: Date;
-  toggleCollapse = true;
+  toggleCollapse = false;
   data_recieved = false;
 
   @Output() filterEvent = new EventEmitter();

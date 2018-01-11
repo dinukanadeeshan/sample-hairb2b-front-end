@@ -1,3 +1,40 @@
+
+.fixed {
+  position: relative;
+  z-index: 2;
+}
+
+@media only screen and (min-width: 991px) {
+  .fixed {
+    position: fixed;
+  }
+}
+
+.pr-0 {
+  padding-right: 0px;
+}
+
+.sm-container {
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+@media only screen and (max-width: 690px) {
+
+  .sm-container {
+    display: none;
+  }
+
+}
+
+
+
+
+
+
+
+
 .label {
   border-radius: 0;
   text-shadow: none;

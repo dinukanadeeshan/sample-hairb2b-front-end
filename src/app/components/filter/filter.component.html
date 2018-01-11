@@ -13,61 +13,64 @@
     </button>
   </div>
 </div>
-<div class="collapse show mt-2" id="collapseExample" *ngIf="data_recieved">
-  <div class="card card-body ml-1">
+<div class="collapse mt-2 " id="collapseExample" *ngIf="data_recieved">
+  <div class="card card-body ml-1 sm-container">
 
-    <div class="d-flex flex-lg-column flex-md-row justify-content-center">
+    <div class="d-flex flex-lg-column flex-md-row flex-sm-column flex-xs-column">
 
+      <div class=" d-flex flex-sm-row flex-lg-column flex-md-row flex-xs-column">
 
-      <div class="mt-1 mx-3 col-lg-10 col-md-4">
+        <div class="mt-1 mx-3 col-lg-10 col-md-6 col-sm-6 col-xs-12">
 
-        <span class="label label-large label-success arrowed-in font-weight-bold text-white">Job Role</span>
-        <div class="input-group mt-2" *ngFor="let role of job_role_filters">
-      <span class="input-group-addon">
+          <span class="label label-large label-success arrowed-in font-weight-bold text-white">Job Role</span>
+          <div class="input-group mt-2" *ngFor="let role of job_role_filters">
+            <span class="input-group-addon">
 
-        <input class="" type="checkbox" (change)="role.selected = !role.selected; applyFilters()">
-      </span>
-          <label class="form-control">
-            {{role.role}}
-          </label>
+              <input class="" type="checkbox" (change)="role.selected = !role.selected; applyFilters()">
+            </span>
+            <label class="form-control">
+              {{role.role}}
+            </label>
+          </div>
         </div>
-      </div>
-      <hr>
-      <div class="mt-1 ml-1 col-lg-10 col-md-4">
+
+        <hr class="">
+        <div class="mt-1 ml-1 pr-0 col-lg-10 col-md-6 col-sm-6 col-xs-12">
 
       <span
         class="label label-large label-success arrowed-in font-weight-bold text-white">
         Maximum Charge
       </span>
-        <div class="pl-3 ">
+          <div class="pl-0 d-flex flex-lg-row flex-md-column flex-sm-row flex-xs-column">
 
-          <mat-slider min="0" [max]="maxSlider" [step]="1" [(ngModel)]="valueOfSlider" [thumbLabel]="true"
-                      (change)="applyFilters()"></mat-slider>
-          <label>
-            AUD {{valueOfSlider}}
-          </label>
+            <mat-slider min="0" [max]="maxSlider" [step]="1" [(ngModel)]="valueOfSlider" [thumbLabel]="true"
+                        (change)="applyFilters()"></mat-slider>
+            <label class="ml-lg-2 pt-lg-3 ml-md-5 ml-sm-2 pt-md-0 pt-sm-3 mat-h5">
+              AUD {{valueOfSlider}}
+            </label>
+          </div>
+
         </div>
 
-
       </div>
+      <div class="visible-md-block col-md-1"></div>
       <hr>
-      <div class="mt-1 mx-2 col-lg-10 col-md-4">
+      <div class="mt-1 mx-2 col-lg-10 col-md-5 col-sm-12 col-xs-12">
 
-      <span
-        class="label label-large label-success arrowed-in font-weight-bold text-white">
-        Free Dates
-      </span>
-        <div class="mt-1 mx-3">
+        <span class="label label-large label-success arrowed-in font-weight-bold text-white">
+          Free Dates
+        </span>
+        <div class="mt-1 px-3">
           <div class="form-inline">
 
-            <mat-form-field>
+            <mat-form-field class="mr-sm-3 ">
               <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="pickerFrom" placeholder="From"
                      [(ngModel)]="fromDate" (dateChange)="applyFilters()">
               <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
               <mat-datepicker #pickerFrom></mat-datepicker>
             </mat-form-field>
 
-            <mat-form-field>
+            <mat-form-field class="ml-sm-3 ml-lg-0 ml-md-0">
               <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="pickerTo" placeholder="To"
                      [(ngModel)]="toDate" (dateChange)="applyFilters()">
               <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>

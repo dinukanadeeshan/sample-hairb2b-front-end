@@ -1,14 +1,15 @@
 <div class="home-inner container-fluid">
 
   <div class="row mb-1">
-    <div class="col-lg-2 col-md-11 ml-5 py-5">
+    <div class="col-xl-2 col-lg-11 col-md-11 ml-5 py-5">
 
-      <app-filter *ngIf="query.q && search_results.length > 0 && data_recieved" (filterEvent)="filterResult($event)"
+      <app-filter class="fixed col-lg-2" *ngIf="query.q && search_results.length > 0 && data_recieved"
+                  (filterEvent)="filterResult($event)"
                   (clearFilter)="clearFilter()"></app-filter>
 
     </div>
 
-    <div class="col-lg-8 col-md-10 ml-4 ml-sm-5 sm-display">
+    <div class="col-xl-8 col-lg-10 col-md-10 ml-4 ml-sm-5 sm-display">
       <div class="panel">
         <div class="alert alert-info">
           <app-search (myEvent)="call($event)" [initial]="query"></app-search>
@@ -32,8 +33,8 @@
 
 
     </div>
-    <div class="col-lg-2 col-md-1"></div>
-    <div style="height: 800px" *ngIf="!data_recieved || !q"></div>
+    <div class="col-xl-2 col-lg-1 col-md-1"></div>
+    <div style="height: 800px" *ngIf="!data_recieved || !query.q"></div>
   </div>
 </div>
 
